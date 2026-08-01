@@ -193,8 +193,13 @@ def compter_reservations_par_trajet(trajet_id, reservations):
         (les 2 réservations du trajet 1 qui ne sont pas "annule";
         la réservation du trajet 2 ne compte pas, ce n'est pas le bon trajet)
     """
-    # TODO : à compléter
-    pass
+    reservations_count = 0
+    for reservation in reservations:
+        if reservation["trajet_id"] == trajet_id:
+            if reservation["statut"] == "effectue" or reservation["statut"] == "en_attente":
+                reservations_count += 1
+
+    return reservations_count
 
 
 def verifier_place_disponible(trajet_id, trajets, reservations):
