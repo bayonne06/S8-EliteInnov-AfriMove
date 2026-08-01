@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AfriMove — Inscription</title>
+  
   <link rel="stylesheet" href="inscription.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body id="page-inscription">
@@ -12,7 +17,7 @@
   <!-- NAVIGATION — TODO (Dev FS7) -->
 
   <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  
+  <div id="nav-session" class="auth-links"></div>
   <main>
     <!-- =====================================================================
          FORMULAIRE — TODO (Dev FS7)
@@ -39,13 +44,13 @@
 
               <div class="feature-item">
                 <i class="fa-solid fa-circle-check"></i>
-                <span>Voyagez sereinement entre les quartiers de <br>Brazzaville</span>
+                <span>Voyagez sereinement entre les quartiers de Brazzaville</span>
               </div>
             </div>
 
             <p class="para">Inscrivez-vous ou Connectez-vous pour réserver ou proposer des trajets entre les quartiers de Brazzaville.</p>
             
-            <div id="nav-session" class="auth-links"></div>
+            
             
           </header> 
         </div>
@@ -92,15 +97,29 @@
       
 
         <button type="submit" class="bttn">Créer mon compte</button>
-      </form>
-    </section>
+      
+    
     <!-- Zone d'erreurs de validation — TODO (Dev FS7) : mettre en forme la
          liste <ul><li> injectée par main.js en cas de formulaire invalide.
          NE PAS MODIFIER l'id. -->
-    <div id="erreurs-form" hidden></div>
+        <div id="erreurs-form" hidden></div>
 
     <!-- LIEN VERS LOGIN — TODO (Dev FS7) : lien "Déjà un compte ? Se connecter"
          pointant vers ../login/login.html -->
+        <footer class="login-footer">
+          <p>
+            Déjà un compte ? 
+
+              <a href="../login/login.html" class="lien-footer">
+            
+                Se connecter
+
+              </a>
+
+          </p>
+        </footer>
+      </form>
+    </section>
   </main>
 
   <div 

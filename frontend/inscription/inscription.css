@@ -1,49 +1,124 @@
+/* =====================================================================
+   CHARTE GRAPHIQUE — AfriMove
+===================================================================== */
+
+:root{
+
+    /**********************
+        COULEURS
+    **********************/
+
+    --primary:#006B3F;
+    --primary-container:#008751;
+    --on-primary:#FFFFFF;
+
+    --secondary:#715C00;
+    --secondary-container:#FFD31A;
+
+    --tertiary:#BD010B;
+    --tertiary-container:#E22923;
+
+    --surface:#F8FAFC;
+    --surface-container:#FFFFFF;
+
+    --on-surface:#1A1C1E;
+    --on-surface-variant:#64748B;
+
+    --outline:#CBD5E1;
+    --outline-variant:#E2E8F0;
+
+    --error:#BA1A1A;
+    --error-container:#FFDAD6;
+
+    /**********************
+        RAYONS
+    **********************/
+
+    --radius-s:4px;
+    --radius-m:8px;
+    --radius-l:16px;
+    --radius-xl:20px;
+
+    /**********************
+        OMBRES
+    **********************/
+
+    --shadow-card:0 15px 35px rgba(0,0,0,.12);
+    --shadow-focus:0 0 0 4px rgba(0,107,63,.15);
+
+    /**********************
+        TYPOGRAPHIE
+    **********************/
+
+    --font-headline:'Montserrat',sans-serif;
+    --font-body:'Inter',sans-serif;
+
+    /**********************
+        ESPACEMENTS
+    **********************/
+
+    --space-1:8px;
+    --space-2:16px;
+    --space-3:24px;
+    --space-4:32px;
+
+}
+
+/* ******************************************************************
+   RESET
+******************************************************************* */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+/* ******************************************************************
+   BODY
+******************************************************************* */
 
 body{
 
-    background:#F8FAFC;
+    background:var(--surface);
 
-    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+    color:var(--on-surface);
+
+    font-family:var(--font-body);
 
     min-height:100vh;
 
 }
 
-
-/* *********************
+/* ******************************************************************
    TITRES
-************************* */
+******************************************************************* */
 
 #titre-inscription{
 
+    color:var(--primary);
+
+    font-family:var(--font-title);
+
     font-weight:700;
-
-    margin:0;
-
-    color:#166534;
 
 }
 
-
 .form-txt{
+
+    color:var(--primary);
+
+    font-family:var(--font-title);
 
     font-weight:700;
 
     margin-bottom:30px;
 
-    color:#166534;
-
 }
 
-
-
 .para{
+
+    color:var(--on-surface-variant);
 
     font-size:14px;
 
@@ -51,17 +126,13 @@ body{
 
     letter-spacing:.3px;
 
-    color:#64748B;
-
     margin:20px 0 30px;
 
 }
 
-
-
-/* **********************
+/* ******************************************************************
    BOUTON
-************************* */
+******************************************************************* */
 
 .bttn{
 
@@ -69,13 +140,13 @@ body{
 
     height:48px;
 
-    border-radius:12px;
-
     border:none;
 
-    background:#16A34A;
+    border-radius:12px;
 
-    color:white;
+    background:var(--primary);
+
+    color:var(--on-primary);
 
     font-size:14px;
 
@@ -83,26 +154,21 @@ body{
 
     cursor:pointer;
 
-    transition:.3s ease;
+    transition:.3s;
 
 }
 
-
-
 .bttn:hover{
 
-    background:#15803D;
+    background:var(--primary-container);
 
     transform:translateY(-2px);
 
 }
 
-
-
-/* ********************
-   SECTION PRINCIPALE
-************************ */
-
+/* ******************************************************************
+   SECTION
+******************************************************************* */
 
 .auth-section{
 
@@ -120,16 +186,14 @@ body{
 
 }
 
+/* ******************************************************************
+   CARTES
+******************************************************************* */
 
-
-/* **********************
-   CARTE FORMULAIRE
-************************* */
-
-
+.auth-container,
 .auth-form{
 
-    background:white;
+    background:var(--surface-container);
 
     width:400px;
 
@@ -139,6 +203,27 @@ body{
 
     padding:45px 50px;
 
+    box-shadow:var(--shadow-card);
+
+}
+
+.auth-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    border-radius:var(--radius-l) 0 0 var(--radius-l);
+
+}
+
+.auth-form{
 
     display:flex;
 
@@ -148,26 +233,15 @@ body{
 
     align-items:center;
 
-
     text-align:center;
 
-
-    border-radius:0 16px 16px 0;
-
-
-    box-shadow:
-
-    0 15px 35px rgba(0,0,0,.12);
+    border-radius:0 var(--radius-l) var(--radius-l) 0;
 
 }
 
-
-
-
-/* **********************
-   INPUT
-*************************** */
-
+/* ******************************************************************
+   FORMULAIRE
+******************************************************************* */
 
 .form-group{
 
@@ -179,134 +253,55 @@ body{
 
 }
 
-
-
 .form-group label{
 
     display:block;
 
     margin-bottom:8px;
 
+    color:var(--on-surface);
+
     font-size:14px;
 
     font-weight:600;
 
-    color:#334155;
-
 }
 
-
-
-
 .form-group input{
-
 
     width:100%;
 
     height:48px;
 
-
     padding:0 16px;
 
-
-    background:#F8FAFC;
-
-
-    border:1px solid #CBD5E1;
-
+    border:1px solid var(--outline);
 
     border-radius:12px;
 
+    background:var(--surface);
 
     font-size:15px;
 
-
     outline:none;
 
-
-    transition:.3s ease;
+    transition:.3s;
 
 }
-
-
-
 
 .form-group input:focus{
 
+    background:#fff;
 
-    background:white;
+    border-color:var(--primary);
 
-
-    border-color:#16A34A;
-
-
-    box-shadow:
-
-    0 0 0 4px rgba(22,163,74,.15);
-
+    box-shadow:var(--shadow-focus);
 
 }
 
-
-
-
-
-/* ************************
-   PRESENTATION GAUCHE
-**************************** */
-
-
-.auth-container{
-
-
-    background:white;
-
-
-    width:400px;
-
-
-    max-width:100%;
-
-
-    min-height:500px;
-
-
-    padding:45px 50px;
-
-
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
-
-
-    text-align:center;
-
-
-    border-radius:16px 0 0 16px;
-
-
-
-    box-shadow:
-
-    0 15px 35px rgba(0,0,0,.12);
-
-
-}
-
-
-
-
-
-/* **********************
+/* ******************************************************************
    AVANTAGES
-*************************** */
-
+******************************************************************* */
 
 .features{
 
@@ -314,253 +309,163 @@ body{
 
 }
 
-
-
 .feature-item{
-
 
     display:flex;
 
     align-items:center;
 
-
     gap:12px;
-
 
     margin-bottom:18px;
 
+    color:var(--on-surface-variant);
 
     font-size:13px;
 
-
-    color:#475569;
-
-
 }
-
-
 
 .feature-item i{
 
-
-    color:#16A34A;
-
+    color:var(--primary);
 
     font-size:22px;
 
-
 }
 
-
-
-
-/* =**********************=
-   LIENS CONNEXION
-************************* */
+/* ******************************************************************
+   LIENS
+******************************************************************* */
 
 
 .auth-links{
 
-
     display:flex;
-
 
     gap:25px;
 
-
     align-items:center;
 
-
 }
-
-
 
 .auth-links a{
 
+    color:var(--primary);
 
     text-decoration:none;
 
-
-    color:#166534;
-
-
-    font-size:15px;
-
-
     font-weight:600;
-
 
     transition:.3s;
 
-
 }
-
-
 
 .auth-links a:hover{
 
-
-    color:#16A34A;
-
+    color:var(--primary-container);
 
 }
 
+.lien-footer{
+    color:var(--primary);
 
-
-
-
-/* =************************=
+    text-decoration:none;
+}
+/* ******************************************************************
    ERREURS
-=**************************= */
-
+******************************************************************* */
 
 .erreurs{
 
+    color:var(--error);
 
     margin-top:20px;
 
-
-    color:#DC2626;
-
-
-    font-size:14px;
-
-
 }
-
 
 .erreurs ul{
 
-
     padding-left:20px;
 
-
 }
-
-
 
 .erreurs li{
 
-
     margin-bottom:8px;
-
 
 }
 
-
-
-
-/* ***********************
+/* ******************************************************************
    TABLETTE
-*************************** */
-
+******************************************************************* */
 
 @media screen and (max-width:992px) and (min-width:769px){
-
 
     .auth-container,
     .auth-form{
 
-
         width:50%;
-
 
         min-height:480px;
 
-
         padding:35px;
 
-
     }
-
 
 }
 
-
-
-
-
-/* ************************
+/* ******************************************************************
    MOBILE
-**************************** */
-
+******************************************************************* */
 
 @media screen and (max-width:768px){
 
-
     body{
 
-        background:white;
+        background:var(--surface-container);
 
     }
-
-
 
     .auth-section{
 
-
         display:block;
-
 
         padding:0;
 
-
         min-height:100vh;
 
-
     }
-
-
 
     .auth-container{
 
-
         display:none;
 
-
     }
-
-
 
     .auth-form{
 
-
         width:100%;
-
 
         max-width:none;
 
-
         min-height:100vh;
-
 
         height:100vh;
 
-
-
         padding:40px 25px;
-
-
 
         border-radius:0;
 
-
         box-shadow:none;
-
 
         justify-content:center;
 
-
     }
 
-
-
     .bttn{
-
 
         height:50px;
 
     }
-
 
 }
