@@ -539,5 +539,4 @@ def trouver_compte_par_telephone(comptes, telephone):
         -> {"id": 1, "telephone": "066123456", "nom": "Franck"}
         trouver_compte_par_telephone(comptes, "055999999") -> None
     """
-    # TODO : à compléter
-    pass
+    return trouver_compte_par_telephone(comptes, telephone) is None
