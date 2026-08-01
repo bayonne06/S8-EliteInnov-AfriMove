@@ -70,7 +70,7 @@
             name="nom" 
             placeholder="Ex : Marie Mayéla" 
             autocomplete="name" 
-            required>
+            >
         </div>
       
         <div class="form-group">
@@ -81,7 +81,7 @@
             name="telephone" 
             placeholder="066123456"
             autocomplete="tel"
-            required>
+            >
         </div>  
       
         <div class="form-group">
@@ -91,7 +91,7 @@
             id="i-mot-de-passe"
             name="mot_de_passe"
             minlength="4"
-            required>
+            >
         </div>
 
       
@@ -102,7 +102,7 @@
     <!-- Zone d'erreurs de validation — TODO (Dev FS7) : mettre en forme la
          liste <ul><li> injectée par main.js en cas de formulaire invalide.
          NE PAS MODIFIER l'id. -->
-        <div id="erreurs-form" hidden></div>
+        <div id="erreurs-form" class="erreurs"></div>
 
     <!-- LIEN VERS LOGIN — TODO (Dev FS7) : lien "Déjà un compte ? Se connecter"
          pointant vers ../login/login.html -->
@@ -123,8 +123,7 @@
   </main>
 
   <div 
-    id="erreur-globale" hidden
-    class="erreurs"></div>
+    id="erreur-globale" hidden></div>
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>
