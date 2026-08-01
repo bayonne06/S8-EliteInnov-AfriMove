@@ -469,8 +469,24 @@ def identifier_trajet_le_plus_reserve(trajets, reservations):
         identifier_trajet_le_plus_reserve(trajets, reservations)
         -> {"trajet_id": 1, "trajet_libelle": "Bacongo → Poto-Poto", "nombre_reservations": 2}
     """
-    # TODO : à compléter
-    pass
+    meilleur_trajet = None
+    max_reservations = -1
+
+    for trajet in trajets:
+        nb_reservations = compter_reservations_par_trajet(trajet["id"], reservations)
+
+        if nb_reservations > max_reservations:
+            max_reservations = nb_reservations
+            meilleur_trajet = trajet
+
+    if max_reservations == 0 or meilleur_trajet is None:
+        return None
+
+    return {
+        "trajet_id": meilleur_trajet["id"],
+        "trajet_libelle": f"{meilleur_trajet['quartier_depart']} → {meilleur_trajet['quartier_arrivee']}",
+        "nombre_reservations": max_reservations
+    }
 
 
 def calculer_indicateurs_dashboard(trajets, reservations, conducteurs):
