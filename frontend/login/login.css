@@ -1,29 +1,70 @@
-/* ***
-RESET
-*** */
+/* ********************************
+   CHARTE AFRIMOVE
+******************************** */
+
+:root{
+
+    --primary:#006b3f;
+    --primary-container:#008751;
+    --on-primary:#ffffff;
+
+    --surface:#f9f9fc;
+    --surface-container:#eeeef0;
+
+    --on-surface:#1a1c1e;
+    --on-surface-variant:#3e4a41;
+
+    --outline:#6e7a70;
+    --outline-variant:#bdcabe;
+
+    --error:#ba1a1a;
+    --error-container:#ffdad6;
+
+    --r-s:4px;
+    --r-m:8px;
+    --r-l:12px;
+    --r-full:999px;
+
+    --font-headline:'Montserrat',sans-serif;
+    --font-body:'Inter',sans-serif;
+
+}
+
+
+
+/* ********************************
+   RESET
+******************************** */
+
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
+
 
 
 body{
 
     min-height:100vh;
 
-    background:#f6f5f7;
+    background:var(--surface);
 
-    font-family:Arial, Helvetica, sans-serif;
+    color:var(--on-surface);
+
+    font-family:var(--font-body);
 
 }
 
 
 
-/* ***
-SESSION
-*** */
+/* ********************************
+   SESSION NAV
+******************************** */
+
 
 #nav-session{
 
@@ -41,9 +82,9 @@ SESSION
 
     text-decoration:none;
 
-    color:#166534;
+    color:var(--primary);
 
-    font-weight:bold;
+    font-weight:700;
 
     margin-left:15px;
 
@@ -55,13 +96,13 @@ SESSION
 
     border:none;
 
-    background:#16a34a;
+    background:var(--primary);
 
     color:white;
 
     padding:8px 15px;
 
-    border-radius:8px;
+    border-radius:var(--r-m);
 
     cursor:pointer;
 
@@ -69,9 +110,12 @@ SESSION
 
 
 
-/* ***
-STRUCTURE PRINCIPALE
-*** */
+
+
+/* ********************************
+   STRUCTURE PRINCIPALE
+******************************** */
+
 
 main{
 
@@ -90,9 +134,10 @@ main{
 
 
 
-/****
-BLOC ACCUEIL
-*** */
+
+/* ********************************
+   CARTE PRINCIPALE
+******************************** */
 
 
 .login-container{
@@ -102,20 +147,33 @@ BLOC ACCUEIL
 
     max-width:100%;
 
+
     background:white;
+
 
     padding:40px;
 
-    border-radius:20px;
+
+    border-radius:var(--r-l);
+
+
+    border:1px solid var(--outline-variant);
 
 
     box-shadow:
 
-    0 15px 35px rgba(0,0,0,.12);
+    0 15px 35px rgba(0,0,0,.08);
 
 
 }
 
+
+
+
+
+/* ********************************
+   LOGO
+******************************** */
 
 
 .logo{
@@ -127,10 +185,11 @@ BLOC ACCUEIL
 
     align-items:center;
 
+
     gap:12px;
 
 
-    margin-bottom:20px;
+    margin-bottom:25px;
 
 
 }
@@ -142,7 +201,7 @@ BLOC ACCUEIL
 
     font-size:40px;
 
-    color:#16a34a;
+    color:var(--primary);
 
 
 }
@@ -152,19 +211,31 @@ BLOC ACCUEIL
 .logo h1{
 
 
-    color:#166534;
+    font-family:var(--font-headline);
+
+    font-weight:800;
 
     font-size:32px;
 
+    color:var(--primary);
 
 }
 
 
 
+
+
+/* ********************************
+   TITRE
+******************************** */
+
+
 .login-header h2{
 
 
-    color:#14532d;
+    font-family:var(--font-headline);
+
+    color:var(--on-surface);
 
     font-size:24px;
 
@@ -178,7 +249,7 @@ BLOC ACCUEIL
 .login-header p{
 
 
-    color:#64748b;
+    color:var(--on-surface-variant);
 
     font-size:14px;
 
@@ -190,42 +261,31 @@ BLOC ACCUEIL
 
 
 
-/* ***
-FORMULAIRE
-*** */
+
+/* ********************************
+   FORMULAIRE
+******************************** */
 
 
 .login-form{
 
 
-    width:420px;
-
-    max-width:100%;
+    width:100%;
 
 
-    background:white;
-
-
-    padding:40px;
-
-
-    border-radius:15px;
-
-
-    box-shadow:
-
-    0 10px 25px rgba(0,0,0,0.12);
-
+    margin-top:30px;
 
 
     display:flex;
 
     flex-direction:column;
 
-    gap:20px;
+
+    gap:18px;
 
 
 }
+
 
 
 
@@ -248,9 +308,9 @@ FORMULAIRE
 
     font-size:14px;
 
-    font-weight:bold;
+    font-weight:600;
 
-    color:#374151;
+    color:var(--on-surface);
 
 
 }
@@ -269,13 +329,16 @@ FORMULAIRE
     padding:0 15px;
 
 
-    border-radius:10px;
+    background:white;
 
 
-    border:1px solid #d1d5db;
+    border-radius:var(--r-m);
 
 
-    background:#fafafa;
+    border:1.5px solid var(--outline-variant);
+
+
+    font-family:var(--font-body);
 
 
     font-size:15px;
@@ -284,7 +347,7 @@ FORMULAIRE
     outline:none;
 
 
-    transition:.3s;
+    transition:.25s ease;
 
 
 }
@@ -294,15 +357,12 @@ FORMULAIRE
 .form-group input:focus{
 
 
-    background:white;
-
-
-    border-color:#16a34a;
+    border-color:var(--primary);
 
 
     box-shadow:
 
-    0 0 0 3px rgba(22,163,74,.15);
+    0 0 0 3px rgba(0,107,63,.15);
 
 
 }
@@ -310,9 +370,12 @@ FORMULAIRE
 
 
 
-/* ***
-BOUTON
-*** */
+
+
+
+/* ********************************
+   BOUTON
+******************************** */
 
 
 .login-btn{
@@ -324,25 +387,28 @@ BOUTON
     border:none;
 
 
-    border-radius:10px;
+    border-radius:var(--r-m);
 
 
-    background:#16a34a;
+    background:var(--primary);
 
 
-    color:white;
+    color:var(--on-primary);
 
 
-    font-size:14px;
+    font-family:var(--font-body);
 
 
-    font-weight:bold;
+    font-size:15px;
+
+
+    font-weight:700;
 
 
     cursor:pointer;
 
 
-    transition:.3s;
+    transition:.3s ease;
 
 
 }
@@ -352,7 +418,7 @@ BOUTON
 .login-btn:hover{
 
 
-    background:#15803d;
+    background:var(--primary-container);
 
 
 }
@@ -360,52 +426,28 @@ BOUTON
 
 
 
-/*  ********
-    ERREURS
-************  */
+
+/* ********************************
+   ERREURS
+******************************** */
 
 
 .erreurs{
 
 
-    width:420px;
-
-    max-width:100%;
+    margin-top:15px;
 
 
-    margin-top:10px;
+    background:var(--error-container);
 
 
-    color:#dc2626;
+    color:var(--error);
 
 
-}
+    border-radius:var(--r-m);
 
 
-
-.erreurs ul{
-
-
-    padding-left:20px;
-
-
-}
-
-
-
-
-/****
-FOOTER
-*** */
-
-
-.login-footer{
-
-
-    text-align:center;
-
-
-    margin-top:20px;
+    padding:12px;
 
 
     font-size:14px;
@@ -415,13 +457,47 @@ FOOTER
 
 
 
+.erreurs ul{
+
+    padding-left:20px;
+
+}
+
+
+
+
+
+/* ********************************
+   FOOTER
+******************************** */
+
+
+.login-footer{
+
+
+    text-align:center;
+
+
+    margin-top:25px;
+
+
+    font-size:14px;
+
+
+    color:var(--on-surface-variant);
+
+
+}
+
+
+
 .login-footer a{
 
 
-    color:#16a34a;
+    color:var(--primary);
 
 
-    font-weight:bold;
+    font-weight:700;
 
 
     text-decoration:none;
@@ -434,6 +510,9 @@ FOOTER
 .login-footer a:hover{
 
 
+    color:var(--primary-container);
+
+
     text-decoration:underline;
 
 
@@ -444,14 +523,10 @@ FOOTER
 
 
 
+/* ********************************
+   TABLETTE
+******************************** */
 
-
-
-
-
-/* ***
-TABLETTE
-*** */
 
 @media screen and (max-width:992px){
 
@@ -466,20 +541,24 @@ TABLETTE
 
     .login-container{
 
-        width:80%;
 
-        padding:35px;
+        width:450px;
+
 
     }
+
 
 
 }
 
 
 
-/* ***
-TELEPHONE
-*** */
+
+
+/* ********************************
+   MOBILE
+******************************** */
+
 
 @media screen and (max-width:768px){
 
@@ -494,11 +573,15 @@ TELEPHONE
 
     main{
 
-        padding:40px 15px 20px;
+
+        padding:70px 15px 20px;
+
 
         align-items:flex-start;
 
+
     }
+
 
 
 
@@ -508,10 +591,13 @@ TELEPHONE
         width:100%;
 
 
-        padding:25px 20px;
+        padding:30px 20px;
 
 
-        border-radius:15px;
+        border-radius:0;
+
+
+        border:none;
 
 
         box-shadow:none;
@@ -521,29 +607,51 @@ TELEPHONE
 
 
 
+
+
     .logo h1{
+
 
         font-size:26px;
 
+
     }
+
+
+
+
+    .logo i{
+
+
+        font-size:32px;
+
+
+    }
+
+
 
 
 
     .login-header h2{
 
+
         font-size:20px;
 
+
     }
+
+
 
 
 
     .login-header p{
 
+
         font-size:13px;
+
 
     }
 
-    
 
 
 }
