@@ -1,288 +1,564 @@
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+
 body{
-    background: #f6f5f7;
-    font-family:Arial, Helvetica, sans-serif;
+
+    background:#F8FAFC;
+
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
 
     min-height:100vh;
 
-    
 }
+
+
+/* *********************
+   TITRES
+************************* */
 
 #titre-inscription{
-    font-weight: bold;
-    margin: 0;
+
+    font-weight:700;
+
+    margin:0;
+
+    color:#166534;
+
 }
-.from-txt{
-    font-weight: bold;
-    bottom: 25px;
-    position: relative;
+
+
+.form-txt{
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+    color:#166534;
+
 }
+
+
 
 .para{
-    font-size: 14px;
-	font-weight: 100;
-	line-height: 20px;
-	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
+
+    font-size:14px;
+
+    line-height:22px;
+
+    letter-spacing:.3px;
+
+    color:#64748B;
+
+    margin:20px 0 30px;
+
 }
+
+
+
+/* **********************
+   BOUTON
+************************* */
 
 .bttn{
-    border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
-}
-.bttn:active {
-	transform: scale(0.95);
+
+    width:100%;
+
+    height:48px;
+
+    border-radius:12px;
+
+    border:none;
+
+    background:#16A34A;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
 }
 
-.bttn:focus {
-	outline: none;
+
+
+.bttn:hover{
+
+    background:#15803D;
+
+    transform:translateY(-2px);
+
 }
 
-.bttn.ghost {
-	background-color: transparent;
-	border-color: #FFFFFF;
-}
+
+
+/* ********************
+   SECTION PRINCIPALE
+************************ */
+
 
 .auth-section{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    /* max-width: 900px; */
-    min-height: 100vh;
-    padding: 20px;
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
 }
 
-.auth-from{
-    background-color: #FFFFFF;
-	border-radius: 10px;
-    border-left: solid;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
-    overflow: hidden;
-    width: 400px;
-	max-width: 100%;
-	min-height: 450px;
-    display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	text-align: center;
+
+
+/* **********************
+   CARTE FORMULAIRE
+************************* */
+
+
+.auth-form{
+
+    background:white;
+
+    width:400px;
+
+    max-width:100%;
+
+    min-height:500px;
+
+    padding:45px 50px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    border-radius:0 16px 16px 0;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.12);
+
 }
 
-input{
-    background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
+
+
+
+/* **********************
+   INPUT
+*************************** */
+
+
+.form-group{
+
+    width:100%;
+
+    margin-bottom:18px;
+
+    text-align:left;
+
 }
+
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+
+
+
+.form-group input{
+
+
+    width:100%;
+
+    height:48px;
+
+
+    padding:0 16px;
+
+
+    background:#F8FAFC;
+
+
+    border:1px solid #CBD5E1;
+
+
+    border-radius:12px;
+
+
+    font-size:15px;
+
+
+    outline:none;
+
+
+    transition:.3s ease;
+
+}
+
+
+
+
+.form-group input:focus{
+
+
+    background:white;
+
+
+    border-color:#16A34A;
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(22,163,74,.15);
+
+
+}
+
+
+
+
+
+/* ************************
+   PRESENTATION GAUCHE
+**************************** */
+
 
 .auth-container{
-    background-color: #FFFFFF;
-	border-radius: 10px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
-    overflow: hidden;
-    width: 400px;
-	max-width: 100%;
-	min-height: 450px;
-    display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	text-align: center;
+
+
+    background:white;
+
+
+    width:400px;
+
+
+    max-width:100%;
+
+
+    min-height:500px;
+
+
+    padding:45px 50px;
+
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+
+
+    text-align:center;
+
+
+    border-radius:16px 0 0 16px;
+
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.12);
+
+
 }
 
 
 
 
 
-.features {
-    margin-top: 30px;
-    
-}
+/* **********************
+   AVANTAGES
+*************************** */
 
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-    font-size: 12px;
-    color: #444;
-}
 
-.feature-item i {
-    color: #28a745; /* Vert */
-    font-size: 22px;
+.features{
+
+    margin-top:30px;
+
 }
 
 
 
+.feature-item{
 
 
+    display:flex;
 
-.auth-links {
-    display: flex;
-    gap: 25px;
-    align-items: center;
+    align-items:center;
+
+
+    gap:12px;
+
+
+    margin-bottom:18px;
+
+
+    font-size:13px;
+
+
+    color:#475569;
+
+
 }
 
-.auth-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: 600;
-    position: relative;
-    transition: color 0.3s ease;
+
+
+.feature-item i{
+
+
+    color:#16A34A;
+
+
+    font-size:22px;
+
+
 }
 
-.auth-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background-color: #2E7D32;
-    transition: width 0.3s ease;
+
+
+
+/* =**********************=
+   LIENS CONNEXION
+************************* */
+
+
+.auth-links{
+
+
+    display:flex;
+
+
+    gap:25px;
+
+
+    align-items:center;
+
+
 }
 
-.auth-links a:hover {
-    color: #2E7D32;
+
+
+.auth-links a{
+
+
+    text-decoration:none;
+
+
+    color:#166534;
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+    transition:.3s;
+
+
 }
 
-.auth-links a:hover::after {
-    width: 100%;
+
+
+.auth-links a:hover{
+
+
+    color:#16A34A;
+
+
 }
+
+
+
+
+
+/* =************************=
+   ERREURS
+=**************************= */
 
 
 .erreurs{
+
+
     margin-top:20px;
-    color:#d32f2f;
+
+
+    color:#DC2626;
+
+
+    font-size:14px;
+
+
 }
+
 
 .erreurs ul{
+
+
     padding-left:20px;
+
+
 }
+
+
 
 .erreurs li{
+
+
     margin-bottom:8px;
+
+
 }
 
 
-/* media screnn */
-@media screen and (max-width:768px){
 
-    body{
-        background:#fff;
-    }
 
-    .auth-section{
+/* ***********************
+   TABLETTE
+*************************** */
 
-        display:block;
-
-        min-height:100vh;
-
-        padding:0;
-
-    }
-
-    .auth-container{
-
-        display:none;
-
-    }
-
-    .auth-from{
-
-        width:100%;
-
-        max-width:none;
-
-        min-width:100%;
-
-        min-height:100vh;
-
-        height:100vh;
-
-        margin:0;
-
-        padding:40px 25px;
-
-        border:none;
-
-        border-radius:0;
-
-        box-shadow:none;
-
-        display:flex;
-
-        justify-content:center;
-
-    }
-
-    .form-group{
-
-        width:100%;
-
-    }
-
-    .bttn{
-
-        width:100%;
-
-    }
-
-}
 
 @media screen and (max-width:992px) and (min-width:769px){
-
-    .auth-section{
-
-        min-height:100vh;
-
-        display:flex;
-
-        justify-content:center;
-
-        align-items:center;
-
-        padding:30px;
-
-    }
 
 
     .auth-container,
     .auth-form{
 
+
         width:50%;
 
-        min-height:450px;
+
+        min-height:480px;
+
+
+        padding:35px;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* *************************
+   MOBILE
+**************************** */
+
+
+@media screen and (max-width:768px){
+
+
+    body{
+
+        background:white;
+
+    }
+
+
+
+    .auth-section{
+
+
+        display:block;
+
+
+        padding:0;
+
+
+        min-height:100vh;
+
+
+    }
+
+
+
+    .auth-container{
+
+
+        display:none;
+
+
+    }
+
+
+
+    .auth-form{
+
+
+        width:100%;
+
+
+        max-width:none;
+
+
+        min-height:100vh;
+
+
+        height:100vh;
+
+
+
+        padding:40px 25px;
+
+
+
+        border-radius:0;
+
+
+        box-shadow:none;
+
+
+        justify-content:center;
+
+
+    }
+
+
+
+    .bttn{
+
+
+        height:50px;
 
     }
 
