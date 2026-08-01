@@ -340,8 +340,16 @@ def calculer_taux_annulation(reservations):
         calculer_taux_annulation(reservations) -> 33.3
         (1 annulée sur 3 réservations, soit 33.33...%, arrondi à 33.3)
     """
-    # TODO : à compléter
-    pass
+    if len(reservations) == 0:
+        return 0.0
+
+    coumpteur_reservations_annules = 0
+    for reservation in reservations:
+        if reservation["statut"] == "annule":
+            coumpteur_reservations_annules += 1
+
+    pourcentage = (coumpteur_reservations_annules / len(reservations)) * 100
+    return round(pourcentage, 1)
 
 
 # ========================================================================
