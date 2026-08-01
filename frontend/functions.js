@@ -134,7 +134,7 @@ function validerFormulaireProposer(formulaire) {
         erreurs.push("Veuillez indiquer le nombre de places disponibles.");
     }else{
         var placesNum = Number(places);
-        if(!number.isInteger(placesNum) || placesNum < 1 || placesNum > 8) {
+        if(!Number.isInteger(placesNum) || placesNum < 1 || placesNum > 8) {
             erreurs.push("Le nombre de places disponibles doit être compris entre 1 et 8.");
         }
     }
@@ -151,7 +151,7 @@ function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure
      *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
      */
     // TODO
-    return `Hello ${nom}, votre réservation pour ${quartierDepart} --> ${quartierArrivee} à ${heure} a été enregistrée.`;
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================
