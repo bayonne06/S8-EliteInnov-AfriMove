@@ -377,7 +377,9 @@ body{
 
 .erreurs{
 
+    background-color: var(--error-container);
     color:var(--error);
+    border-radius: var(--radius-m);
 
     margin-top:20px;
 
@@ -392,6 +394,24 @@ body{
 .erreurs li{
 
     margin-bottom:8px;
+
+}
+
+#erreur-globale{
+
+    color:var(--error);
+
+    background:var(--error-container);
+
+    padding:12px;
+
+    border-radius:var(--radius-m);
+
+    margin:20px auto;
+
+    text-align:center;
+
+    max-width:400px;
 
 }
 
