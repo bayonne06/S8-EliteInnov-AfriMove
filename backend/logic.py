@@ -244,8 +244,23 @@ def verifier_place_disponible(trajet_id, trajets, reservations):
         (3 places au total, 2 déjà prises par des réservations actives,
         il en reste 1)
     """
-    # TODO : à compléter
-    pass
+    nombre_reservations_actives = compter_reservations_par_trajet(trajet_id, reservations)
+
+    trajet_cible = None
+    for trajet in trajets:
+        if trajet["id"] == trajet_id:
+            trajet_cible = trajet
+            break
+
+    if not trajet_cible:
+        return {"place_dispo": False, "places_restantes": 0, "message": "Trajet introuvable"}
+
+    places_restantes = trajet_cible["places_dispo"] - nombre_reservations_actives
+
+    if places_restantes > 0:
+        return {"place_dispo": True, "places_restantes": places_restantes, "message": ""}
+    else:
+        return {"place_dispo": False, "places_restantes": 0, "message": "Trajet complet"}
 
 
 def filtrer_reservations_par_statut(reservations, statut):
