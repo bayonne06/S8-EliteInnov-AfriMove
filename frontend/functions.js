@@ -51,7 +51,38 @@ function filtrerParQuartierDepart(trajets, quartier) {
      * @return {Array} - trajets filtrés
      * Si quartier est vide ou null, retourne tous les trajets.
      */
-    // TODO
+
+    // Contrôle : trajets doit être une liste
+    if (!Array.isArray(trajets)) {
+        return [];
+    }
+
+    // Contrôle : quartier vide / null / undefined → on garde tout
+    if (quartier === null || quartier === undefined || quartier === "") {
+        return trajets;
+    }
+
+    // Contrôle : ignorer les espaces seuls (ex: "   ")
+    var quartierNettoye = String(quartier).trim();
+    if (quartierNettoye === "") {
+        return trajets;
+    }
+
+    // On parcourt la liste et on garde les bons trajets
+    var resultat = [];
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+
+        // Contrôle : ignorer une entrée invalide
+        if (!trajet || typeof trajet !== "object") {
+            continue;
+        }
+
+        if (trajet.quartier_depart === quartierNettoye) {
+            resultat.push(trajet);
+        }
+    }
+    return resultat;
 }
 
 function rechercherParMotCle(trajets, motCle) {
@@ -63,7 +94,46 @@ function rechercherParMotCle(trajets, motCle) {
      * @return {Array} - trajets correspondants
      * Si motCle est vide, retourne tous les trajets.
      */
-    // TODO
+
+    // Contrôle : trajets doit être une liste
+    if (!Array.isArray(trajets)) {
+        return [];
+    }
+
+    // Contrôle : mot-clé vide / null / undefined → on garde tout
+    if (motCle === null || motCle === undefined || motCle === "") {
+        return trajets;
+    }
+
+    // Contrôle : ignorer les espaces seuls, et passer en minuscules
+    var motNettoye = String(motCle).trim().toLowerCase();
+    if (motNettoye === "") {
+        return trajets;
+    }
+
+    // On parcourt la liste et on cherche le mot dans 3 champs
+    var resultat = [];
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+
+        // Contrôle : ignorer une entrée invalide
+        if (!trajet || typeof trajet !== "object") {
+            continue;
+        }
+
+        var depart = String(trajet.quartier_depart || "").toLowerCase();
+        var arrivee = String(trajet.quartier_arrivee || "").toLowerCase();
+        var commentaire = String(trajet.commentaire || "").toLowerCase();
+
+        var trouveDansDepart = depart.indexOf(motNettoye) !== -1;
+        var trouveDansArrivee = arrivee.indexOf(motNettoye) !== -1;
+        var trouveDansCommentaire = commentaire.indexOf(motNettoye) !== -1;
+
+        if (trouveDansDepart || trouveDansArrivee || trouveDansCommentaire) {
+            resultat.push(trajet);
+        }
+    }
+    return resultat;
 }
 
 // ============================================================================
