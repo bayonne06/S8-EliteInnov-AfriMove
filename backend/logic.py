@@ -515,25 +515,10 @@ def verifier_telephone_disponible(comptes, telephone):
         verifier_telephone_disponible(comptes, "066123456") -> False
         verifier_telephone_disponible(comptes, "055999999") -> True
     """
-    # TODO : à compléter
     for compte in comptes:
         if compte["telephone"] == telephone:
             return False
     return True
-
-    note_moyenne = 0.0
-    if conducteurs:
-        somme_notes = 0.0
-        for conducteur in conducteurs:
-            somme_notes += conducteur["note"]
-        note_moyenne = round(somme_notes / len(conducteurs), 1)
-
-    return {
-        "total_trajets_disponibles": total_trajets_disponibles,
-        "total_conducteurs_actifs": total_conducteurs_actifs,
-        "total_reservations_actives": total_reservations_actives,
-        "note_moyenne_conducteurs": note_moyenne
-    }
 
 
 def trouver_compte_par_telephone(comptes, telephone):
