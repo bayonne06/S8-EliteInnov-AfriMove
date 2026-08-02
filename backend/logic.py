@@ -515,8 +515,10 @@ def verifier_telephone_disponible(comptes, telephone):
         verifier_telephone_disponible(comptes, "066123456") -> False
         verifier_telephone_disponible(comptes, "055999999") -> True
     """
-    # TODO : à compléter
-    pass
+    for compte in comptes:
+        if compte["telephone"] == telephone:
+            return False
+    return True
 
 
 def trouver_compte_par_telephone(comptes, telephone):
@@ -539,5 +541,8 @@ def trouver_compte_par_telephone(comptes, telephone):
         -> {"id": 1, "telephone": "066123456", "nom": "Franck"}
         trouver_compte_par_telephone(comptes, "055999999") -> None
     """
-    # TODO : à compléter
-    pass
+    for compte in comptes:
+        if compte["telephone"] == telephone:
+            return compte
+
+    return None
