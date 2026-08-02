@@ -60,7 +60,11 @@ def filtrer_trajets_disponibles(trajets):
     """
     # On construit une nouvelle liste, vide au départ.
     # TODO : à compléter
-    pass
+    result = []
+    for trajet in trajets:
+        if trajet["places_dispo"] >= 1:
+            result.append(trajet)
+    return result
 
 
 def filtrer_par_quartier_depart(trajets, quartier):
