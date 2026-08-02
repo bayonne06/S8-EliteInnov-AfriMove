@@ -7,6 +7,8 @@
     --texte: #172524;
     --texte-doux: #5b6e6b;
     --bordure: #d4e3e0;
+    --surface: #ffffff;
+    --surface-soft: #f7fcfb;
     --ombre-forte: 0 16px 36px rgba(14, 45, 42, 0.14);
     --pill: 999px;
     --titre: "Outfit", sans-serif;
@@ -179,7 +181,7 @@
     padding: 0;
     border: 1px solid var(--bordure);
     border-radius: 12px;
-    background: var(--surface);
+    background: var(--surface, #ffffff);
     cursor: pointer;
     flex-shrink: 0;
     transition: background 0.18s ease, border-color 0.18s ease;

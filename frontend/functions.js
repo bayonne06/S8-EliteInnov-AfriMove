@@ -26,7 +26,18 @@ function compterTrajetsAujourdhui(trajets, dateAujourdhui) {
      * @return {number} - nombre de trajets à cette date
      * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
      */
-    // TODO
+    if (!Array.isArray(trajets) || typeof dateAujourdhui !== "string") {
+        return 0;
+    }
+
+    var compteur = 0;
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+        if (trajet && typeof trajet === "object" && trajet.date === dateAujourdhui) {
+            compteur += 1;
+        }
+    }
+    return compteur;
 }
 
 function formaterQuartierPrincipal(compteParQuartier) {
@@ -36,7 +47,32 @@ function formaterQuartierPrincipal(compteParQuartier) {
      * @return {string} - ex: "Poto-Poto (8 trajets)"
      * Si l'objet est vide, retourne "Aucun trajet".
      */
-    // TODO
+    if (!compteParQuartier || typeof compteParQuartier !== "object") {
+        return "Aucun trajet";
+    }
+
+    var meilleurQuartier = null;
+    var meilleurCompte = -Infinity;
+    for (var quartier in compteParQuartier) {
+        if (!Object.prototype.hasOwnProperty.call(compteParQuartier, quartier)) {
+            continue;
+        }
+        var compte = compteParQuartier[quartier];
+        if (typeof compte !== "number" || isNaN(compte)) {
+            continue;
+        }
+        if (compte > meilleurCompte) {
+            meilleurCompte = compte;
+            meilleurQuartier = quartier;
+        }
+    }
+
+    if (meilleurQuartier === null || meilleurCompte < 0) {
+        return "Aucun trajet";
+    }
+
+    var suffixe = meilleurCompte === 1 ? " trajet" : " trajets";
+    return meilleurQuartier + " (" + meilleurCompte + suffixe + ")";
 }
 
 // ============================================================================
