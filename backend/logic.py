@@ -153,7 +153,15 @@ def trier_par_heure(trajets):
         comparaison de chaînes), pas besoin de les convertir en nombres.
     """
     # TODO : à compléter
-    pass
+    result = []
+    for trajet in trajets:
+        result.append(trajet)
+    
+        for i in range(len(result)):
+            for j in range(i + 1, len(result)):
+                if result[i]["heure"] > result[j]["heure"]:
+                    result[i], result[j] = result[j], result[i]
+    return result
 
 
 def trier_par_prix_croissant(trajets):
