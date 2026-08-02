@@ -11,13 +11,24 @@
 </head>
 <body id="page-recherche">
 
-  <!-- Case à cocher hors écran : ouvre/ferme le menu mobile en CSS uniquement -->
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" tabindex="-1">
-
-  <!-- NAVIGATION — TODO (Dev FS2) -->
+  <!-- NAVIGATION — menu burger en CSS pur (checkbox hack) : aucun script, aucun DOM.
+       #nav-toggle est une checkbox cachée ; le <label for="nav-toggle"> ouvre/ferme ;
+       .nav-toggle:checked ~ .nav-principale affiche le menu. Visible ≤ 768px seulement. -->
   <header class="site-header">
     <div class="nav-barre">
       <a class="nav-marque" href="../accueil/index.html">BraCovoit</a>
+
+      <!-- PAS d'attribut "hidden" : il casse le sélecteur ":checked ~" sur certains moteurs.
+           Le masquage se fait uniquement en CSS (.nav-toggle). -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <label for="nav-toggle" class="nav-burger" aria-label="Ouvrir le menu">
+        <span class="nav-burger-lignes" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </label>
 
       <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
         <ul class="nav-liens" id="nav-liens">
@@ -31,22 +42,10 @@
         <div id="nav-session"></div>
       </nav>
 
-      <label
-        for="nav-toggle"
-        class="nav-burger"
-        id="nav-burger"
-        aria-label="Ouvrir le menu"
-      >
-        <span class="nav-burger-lignes" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </label>
+      <!-- Overlay frère de #nav-toggle : .nav-toggle:checked ~ .nav-overlay l'affiche ;
+           le label referme le menu au clic (décoche la checkbox). -->
+      <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
     </div>
-
-    <!-- Clic hors menu = décocher #nav-toggle (ferme le panneau) -->
-    <label for="nav-toggle" class="nav-overlay" id="nav-overlay" aria-hidden="true"></label>
   </header>
 
   <main>
