@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Inscription</title>
+  <title>AfriMove — Inscription</title>
+  
   <link rel="stylesheet" href="inscription.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body id="page-inscription">
 
   <!-- NAVIGATION — TODO (Dev FS7) -->
 
   <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
-
+  <div id="nav-session" class="auth-links"></div>
   <main>
     <!-- =====================================================================
          FORMULAIRE — TODO (Dev FS7)
@@ -22,29 +27,103 @@
 
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <form id="form-inscription">
-      <label for="i-nom">Nom</label>
-      <input type="text" id="i-nom">
+    <section class="auth-section" aria-labelledby="titre-inscription">
+      <div class="auth-container">
+        <header class="page-title">
+          <h1 id="titre-inscription">Rejoignez AfriMove dès aujourd'hui !</h1>
+          <div class="features">
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Trouvez un trajet en quelques secondes</span>
+            </div>
 
-      <label for="i-telephone">Téléphone</label>
-      <input type="tel" id="i-telephone" placeholder="066123456">
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Partagez vos frais de transport</span>
+            </div>
 
-      <label for="i-mot-de-passe">Mot de passe</label>
-      <input type="password" id="i-mot-de-passe">
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Voyagez sereinement entre les quartiers de Brazzaville</span>
+            </div>
+          </div>
 
-      <button type="submit">Créer mon compte</button>
-    </form>
+          <p class="para">Inscrivez-vous ou Connectez-vous pour réserver ou proposer des trajets entre les quartiers de Brazzaville.</p>
+            
+            
+            
+        </header> 
+      </div>
+    
 
+
+
+      <form id="form-inscription" class="auth-form">
+        
+        <h2 class="form-txt">Créer un compte AfriMove</h2>
+        
+        <div class="form-group">
+          <label for="i-nom">Nom complet</label>
+          <input 
+            type="text" 
+            id="i-nom" 
+            name="nom" 
+            placeholder="Ex : Marie Mayéla" 
+            autocomplete="name" 
+            >
+        </div>
+      
+        <div class="form-group">
+          <label for="i-telephone">Téléphone</label>
+          <input 
+            type="tel" 
+            id="i-telephone"
+            name="telephone" 
+            placeholder="066123456"
+            autocomplete="tel"
+            >
+        </div>  
+      
+        <div class="form-group">
+          <label for="i-mot-de-passe">Mot de passe</label>
+          <input 
+            type="password" 
+            id="i-mot-de-passe"
+            name="mot_de_passe"
+            minlength="4"
+            >
+        </div>
+
+      
+
+        <button type="submit" class="bttn">Créer mon compte</button>
+      
+    
     <!-- Zone d'erreurs de validation — TODO (Dev FS7) : mettre en forme la
          liste <ul><li> injectée par main.js en cas de formulaire invalide.
          NE PAS MODIFIER l'id. -->
-    <div id="erreurs-form" hidden></div>
+        <div id="erreurs-form" class="erreurs"></div>
 
     <!-- LIEN VERS LOGIN — TODO (Dev FS7) : lien "Déjà un compte ? Se connecter"
          pointant vers ../login/login.html -->
+        <footer class="login-footer">
+          <p>
+            Déjà un compte ? 
+
+              <a href="../login/login.html" class="lien-footer">
+            
+                Se connecter
+
+              </a>
+
+          </p>
+        </footer>
+      </form>
+    </section>
   </main>
 
-  <div id="erreur-globale" hidden></div>
+  <div 
+    id="erreur-globale" hidden></div>
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>

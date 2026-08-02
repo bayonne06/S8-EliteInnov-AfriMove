@@ -286,7 +286,7 @@ function getBadgeDisponibilite(placesRestantes) {
 // ============================================================================
 
 function validerFormulaireInscription(formulaire) {
-    /**
+    /* *
      * Valide le formulaire d'inscription.
      * @param {Object} formulaire - avec les clés : nom, telephone, mot_de_passe
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -296,11 +296,63 @@ function validerFormulaireInscription(formulaire) {
      * - telephone obligatoire, au moins 9 chiffres
      * - mot_de_passe obligatoire, au moins 4 caractères
      */
-    // TODO
+    
+
+    let erreurs =  [];
+
+    // Vérification du nom
+
+    if (!formulaire.nom || formulaire.nom.trim() === ""){
+        erreurs.push("le nom est obligatoire.");
+    }
+
+    // Vérification du téléphone
+
+    if (!formulaire.telephone || formulaire.telephone.trim() ===""){
+        erreurs.push("Le numéro de téléphone est obligatoire.");
+
+    }
+    else{
+
+        // garde seulement les chiffres
+        let telephone = formulaire.telephone.replace(/\D/g,"");
+
+        if (telephone.length < 9) {
+            erreurs.push(
+                "Le numéro de téléphone doit contenir au moins 9 chiffres."
+            )
+        }
+    }
+
+
+    // Vérification du mot de passe
+
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+
+        erreurs.push("Le mot de passe est obligatoire.");
+
+    } 
+    else if (formulaire.mot_de_passe.length < 4) {
+
+        erreurs.push(
+            "Le mot de passe doit contenir au moins 4 caractères."
+        );
+
+    }
+    return {
+
+        valide: erreurs.length === 0,
+
+        erreurs: erreurs
+
+    };
+
 }
 
+
+
 function validerFormulaireLogin(formulaire) {
-    /**
+    /*
      * Valide le formulaire de connexion.
      * @param {Object} formulaire - avec les clés : telephone, mot_de_passe
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -309,7 +361,44 @@ function validerFormulaireLogin(formulaire) {
      * - telephone obligatoire
      * - mot_de_passe obligatoire
      */
-    // TODO
+    
+
+    let erreurs = [];
+
+    // Vérification téléphone
+
+    if (!formulaire.telephone || formulaire.telephone.trim() === "") {
+
+
+        erreurs.push(
+            "Le numéro de téléphone est obligatoire."
+        );
+
+
+    }
+
+    // Vérification mot de passe
+
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+
+
+        erreurs.push(
+            "Le mot de passe est obligatoire."
+        );
+
+
+    }
+
+    return {
+
+
+        valide: erreurs.length === 0,
+
+
+        erreurs: erreurs
+
+
+    };
 }
 
 // ============================================================================
