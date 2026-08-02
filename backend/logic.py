@@ -59,7 +59,6 @@ def filtrer_trajets_disponibles(trajets):
         sortie -> [{"id": 1, "places_dispo": 2}, {"id": 3, "places_dispo": 3}]
     """
     # On construit une nouvelle liste, vide au départ.
-    # TODO : à compléter
     result = []
     for trajet in trajets:
         if trajet["places_dispo"] >= 1:
@@ -89,7 +88,6 @@ def filtrer_par_quartier_depart(trajets, quartier):
         filtrer_par_quartier_depart(trajets, "Bacongo")
         -> [{"id": 1, "quartier_depart": "Bacongo"}, {"id": 3, "quartier_depart": "Bacongo"}]
     """
-    # TODO : à compléter
     result = []
     for trajet in trajets:
         if trajet["quartier_depart"] == quartier:
@@ -120,7 +118,6 @@ def filtrer_par_trajet_complet(trajets, depart, arrivee):
         filtrer_par_trajet_complet(trajets, "Bacongo", "Poto-Poto")
         -> [{"id": 1, "quartier_depart": "Bacongo", "quartier_arrivee": "Poto-Poto"}]
     """
-    # TODO : à compléter
     result = []
     for trajet in trajets:
         if trajet["quartier_depart"] == depart and trajet["quartier_arrivee"] == arrivee:
@@ -152,7 +149,6 @@ def trier_par_heure(trajets):
         fonctionne directement ("07:00" < "07:30" < "08:00" est vrai en
         comparaison de chaînes), pas besoin de les convertir en nombres.
     """
-    # TODO : à compléter
     result = []
     for trajet in trajets:
         result.append(trajet)
@@ -179,7 +175,6 @@ def trier_par_prix_croissant(trajets):
         entrée -> [{"prix_place": 700}, {"prix_place": 400}, {"prix_place": 500}]
         sortie -> [{"prix_place": 400}, {"prix_place": 500}, {"prix_place": 700}]
     """
-    # TODO : à compléter
     result = []
     for trajet in trajets:
         result.append(trajet)
