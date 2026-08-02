@@ -180,7 +180,15 @@ def trier_par_prix_croissant(trajets):
         sortie -> [{"prix_place": 400}, {"prix_place": 500}, {"prix_place": 700}]
     """
     # TODO : à compléter
-    pass
+    result = []
+    for trajet in trajets:
+        result.append(trajet)
+            
+        for i in range(len(result)):
+            for j in range(i + 1, len(result)):
+                if result[i]["prix_place"] > result[j]["prix_place"]:
+                    result[i], result[j] = result[j], result[i]
+    return result
 
 
 # ========================================================================
