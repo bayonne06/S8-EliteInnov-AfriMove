@@ -90,7 +90,11 @@ def filtrer_par_quartier_depart(trajets, quartier):
         -> [{"id": 1, "quartier_depart": "Bacongo"}, {"id": 3, "quartier_depart": "Bacongo"}]
     """
     # TODO : à compléter
-    pass
+    result = []
+    for trajet in trajets:
+        if trajet["quartier_depart"] == quartier:
+            result.append(trajet)
+    return result
 
 
 def filtrer_par_trajet_complet(trajets, depart, arrivee):
