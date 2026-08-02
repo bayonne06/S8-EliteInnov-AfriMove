@@ -3,17 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Proposer un trajet</title>
+  <title>Proposer un trajet - AfriMove</title>
   <link rel="stylesheet" href="proposer.css">
 </head>
 <body id="page-proposer">
 
-  <!-- NAVIGATION — TODO (Dev FS4) -->
+  <!-- NAVIGATION — TODO (Dev FS4)
+       Menu burger géré en CSS pur (technique "checkbox hack") : aucune
+       manipulation du DOM, aucun script. #nav-toggle est une checkbox
+       cachée ; le <label for="nav-toggle"> sert de bouton ; la règle CSS
+       .nav-toggle:checked ~ .nav-principale { ... } affiche le menu.
+       Le burger n'est visible qu'en dessous de 768px (règle dans
+       proposer.css) ; au-dessus, .nav-principale reste visible en
+       permanence quel que soit l'état de la checkbox. -->
+  <header class="site-header">
+    <div class="nav-barre">
+      <a class="nav-marque" href="../accueil/index.html">AfriMove</a>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+      <!-- PAS d'attribut "hidden" ici : sur certains moteurs de rendu, il
+           empêche le sélecteur ":checked ~" de fonctionner. Le masquage se
+           fait uniquement en CSS (voir .nav-toggle dans proposer.css). -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <label for="nav-toggle" class="nav-burger" aria-label="Ouvrir le menu">
+        <span class="nav-burger-lignes" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </label>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <ul class="nav-liens" id="nav-liens">
+          <li><a href="../accueil/index.html">Accueil</a></li>
+          <li><a href="../recherche/recherche.html">Recherche</a></li>
+          <li><a href="proposer.html" aria-current="page">Proposer un trajet</a></li>
+          <li><a href="../mes-trajets/mes-trajets.html">Mes trajets</a></li>
+        </ul>
+
+        <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+        <div id="nav-session"></div>
+      </nav>
+    </div>
+
+    <!-- Overlay 100% CSS : un <label> plein écran qui referme le menu au clic,
+         affiché uniquement quand la checkbox est cochée (voir proposer.css) -->
+    <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
+  </header>
 
   <main>
+    <header class="page-intro">
+      <h1>Proposer un trajet</h1>
+      <p>Vous faites déjà ce trajet ? Partagez vos places disponibles et fixez votre prix.</p>
+    </header>
+
     <!-- =====================================================================
          FORMULAIRE — TODO (Dev FS4)
          Mettre en forme le formulaire de proposition de trajet : les deux
@@ -50,11 +93,20 @@
 
     <!-- BLOC D'AIDE — TODO (Dev FS4) : encart explicatif optionnel
          (ex. rappel que le prix est libre, conseils de sécurité) -->
+    <aside class="bloc-aide">
+      <h2>Avant de publier</h2>
+      <ul>
+        <li>Le prix par place est libre : fixez un montant cohérent avec les trajets déjà proposés sur ce quartier.</li>
+        <li>Précisez un point de rendez-vous clair à vos passagers une fois le trajet publié.</li>
+        <li>Vous pourrez modifier ou annuler ce trajet depuis « Mes trajets ».</li>
+      </ul>
+    </aside>
   </main>
 
   <div id="erreur-globale" hidden></div>
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>
+
 </body>
 </html>

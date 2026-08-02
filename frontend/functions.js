@@ -166,6 +166,7 @@ function formaterHeure(heure) {
 function validerFormulaireProposer(formulaire) {
     /**
      * Valide le formulaire de proposition de trajet.
+     * 
      * @param {Object} formulaire - avec les clés : quartier_depart,
      *   quartier_arrivee, heure, places_dispo, prix_place
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -177,6 +178,38 @@ function validerFormulaireProposer(formulaire) {
      * - prix_place > 0
      */
     // TODO
+    var erreurs = [];
+    var arrive = formulaire && formulaire.quartier_arrivee;
+    var depart = formulaire && formulaire.quartier_depart;
+    var places = formulaire && formulaire.places_dispo;
+    var prix = formulaire && formulaire.prix_place;
+    var heure = formulaire && formulaire.heure;
+    var heureRegex = /^([01]\d|2[0-3]):([0-5]\d)$/; // regex pour vérifier le format HH:MM
+
+    if(!depart || depart.trim() === "") {
+        erreurs.push("Le quartier de départ doit être obligatoirement renseigné.");
+    }
+    if(!arrive || arrive.trim() === "") {
+        erreurs.push("Vous devez renseigner le quartier d'arrivée.");
+    }
+    if(depart && arrive && depart.trim() === arrive.trim()) {
+        erreurs.push("Le lieu de départ et d'arrivée doivent être différents.");
+    }
+    if(!heure || heure.trim() === "") {
+        erreurs.push("Veillez renseigner l'heure de votre départ.");
+    } else if(!heureRegex.test(heure)) {
+        erreurs.push("L'heure doit être au format Heures : Minutes (ex: 08:40).");
+    }
+    if(places === undefined || places === null || places == "") {
+        erreurs.push("Veuillez indiquer le nombre de places disponibles.");
+    }else{
+        var placesNum = Number(places);
+        if(!Number.isInteger(placesNum) || placesNum < 1 || placesNum > 8) {
+            erreurs.push("Le nombre de places disponibles doit être compris entre 1 et 8.");
+        }
+    }
+    return{valide: erreurs.length === 0, erreurs: erreurs};
+
 }
 
 function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure) {
@@ -188,6 +221,7 @@ function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure
      *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
      */
     // TODO
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================
