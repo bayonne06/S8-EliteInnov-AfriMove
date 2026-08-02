@@ -39,8 +39,21 @@ body {
   line-height: 1.5;
 }
 
-body.menu-ouvert {
+body:has(#nav-toggle:checked) {
   overflow: hidden;
+}
+
+/* Checkbox hors écran — pilote le menu burger en CSS */
+.nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 a {
@@ -229,22 +242,22 @@ a {
 .nav-burger-lignes span:nth-child(2) { top: 6px; width: 13px; }
 .nav-burger-lignes span:nth-child(3) { top: 12px; }
 
-.nav-burger[aria-expanded="true"] {
+body:has(#nav-toggle:checked) .nav-burger {
   background: var(--accent-doux);
   border-color: rgba(14, 143, 132, 0.45);
 }
 
-.nav-burger[aria-expanded="true"] .nav-burger-lignes span:nth-child(1) {
+body:has(#nav-toggle:checked) .nav-burger-lignes span:nth-child(1) {
   top: 6px;
   transform: rotate(45deg);
 }
 
-.nav-burger[aria-expanded="true"] .nav-burger-lignes span:nth-child(2) {
+body:has(#nav-toggle:checked) .nav-burger-lignes span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.nav-burger[aria-expanded="true"] .nav-burger-lignes span:nth-child(3) {
+body:has(#nav-toggle:checked) .nav-burger-lignes span:nth-child(3) {
   top: 6px;
   transform: rotate(-45deg);
 }
@@ -321,36 +334,22 @@ main {
   padding-left: 0.35rem;
 }
 
-/* Select custom — liste vers le bas */
+/* Select natif stylé (même rendu que l’ancien trigger) */
 .select-custom {
   position: relative;
   width: 100%;
 }
 
-.select-natif {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.select-trigger,
+.select-filtre,
 .champ-recherche-wrap,
 #btn-rechercher {
   height: 50px;
 }
 
-.select-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.select-filtre {
+  display: block;
   width: 100%;
-  padding: 0 1.1rem;
+  padding: 0 2.6rem 0 1.1rem;
   border: 2px solid var(--accent);
   border-radius: var(--pill);
   background: var(--surface);
@@ -358,74 +357,35 @@ main {
   font-family: var(--corps);
   font-size: 0.95rem;
   font-weight: 500;
-  text-align: left;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(14, 143, 132, 0.1);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-.select-trigger::after {
+.select-custom::after {
   content: "";
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
   width: 8px;
   height: 8px;
-  margin-left: 0.6rem;
   border-right: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
-  transform: rotate(45deg) translateY(-2px);
-  transition: transform 0.2s ease;
-  flex-shrink: 0;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
 }
 
-.select-trigger.est-ouvert::after {
-  transform: rotate(225deg) translateY(-2px);
-}
-
-.select-trigger:focus,
-.select-trigger.est-ouvert {
+.select-filtre:focus {
   outline: none;
   border-color: var(--accent-fonce);
   box-shadow: 0 0 0 4px rgba(14, 143, 132, 0.15);
 }
 
-.select-liste {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  z-index: 50;
-  margin: 0;
-  padding: 0.4rem;
-  list-style: none;
-  max-height: 260px;
-  overflow-y: auto;
-  background: var(--surface);
-  border: 1px solid var(--bordure);
-  border-radius: 14px;
-  box-shadow: var(--ombre-forte);
-}
-
-.select-liste[hidden] {
-  display: none !important;
-}
-
-.select-liste li {
-  padding: 0.7rem 0.85rem;
-  border-radius: 10px;
-  font-size: 0.94rem;
-  font-weight: 500;
-  color: var(--texte);
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.select-liste li:hover {
-  background: var(--accent-doux);
-  color: var(--accent-fonce);
-}
-
-.select-liste li[aria-selected="true"] {
-  background: var(--accent);
-  color: #fff;
+.select-custom:has(.select-filtre:focus)::after {
+  transform: translateY(-30%) rotate(225deg);
 }
 
 .champ-recherche-wrap {
@@ -745,7 +705,7 @@ main {
     transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
   }
 
-  body.menu-ouvert .nav-principale {
+  body:has(#nav-toggle:checked) .nav-principale {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -794,20 +754,15 @@ main {
     backdrop-filter: blur(2px);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
+    cursor: pointer;
     transition: opacity 0.22s ease, visibility 0.22s ease;
   }
 
-  body.menu-ouvert .nav-overlay {
+  body:has(#nav-toggle:checked) .nav-overlay {
     opacity: 1;
     visibility: visible;
-  }
-
-  .nav-overlay[hidden] {
-    display: none;
-  }
-
-  body.menu-ouvert .nav-overlay:not([hidden]) {
-    display: block;
+    pointer-events: auto;
   }
 }
 
@@ -835,9 +790,5 @@ main {
 
   #btn-rechercher {
     width: 100%;
-  }
-
-  .select-liste {
-    max-height: 220px;
   }
 }

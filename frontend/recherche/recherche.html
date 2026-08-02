@@ -11,6 +11,9 @@
 </head>
 <body id="page-recherche">
 
+  <!-- Case à cocher hors écran : ouvre/ferme le menu mobile en CSS uniquement -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" tabindex="-1">
+
   <!-- NAVIGATION — TODO (Dev FS2) -->
   <header class="site-header">
     <div class="nav-barre">
@@ -28,23 +31,22 @@
         <div id="nav-session"></div>
       </nav>
 
-      <button
-        type="button"
+      <label
+        for="nav-toggle"
         class="nav-burger"
         id="nav-burger"
         aria-label="Ouvrir le menu"
-        aria-expanded="false"
-        aria-controls="nav-principale"
       >
         <span class="nav-burger-lignes" aria-hidden="true">
           <span></span>
           <span></span>
           <span></span>
         </span>
-      </button>
+      </label>
     </div>
 
-    <div class="nav-overlay" id="nav-overlay" hidden></div>
+    <!-- Clic hors menu = décocher #nav-toggle (ferme le panneau) -->
+    <label for="nav-toggle" class="nav-overlay" id="nav-overlay" aria-hidden="true"></label>
   </header>
 
   <main>
@@ -63,20 +65,9 @@
          ===================================================================== -->
     <section class="barre-filtres" aria-label="Filtres de recherche">
       <div class="filtre-champ">
-        <span class="filtre-label" id="label-filtre-depart">Départ</span>
+        <label class="filtre-label" id="label-filtre-depart" for="filtre-depart">Départ</label>
         <div class="select-custom">
-          <select id="filtre-depart" class="select-natif" aria-labelledby="label-filtre-depart"></select>
-          <button
-            type="button"
-            class="select-trigger"
-            id="filtre-depart-trigger"
-            aria-haspopup="listbox"
-            aria-expanded="false"
-            aria-labelledby="label-filtre-depart"
-          >
-            <span class="select-trigger-texte">Tous les quartiers</span>
-          </button>
-          <ul class="select-liste" id="filtre-depart-liste" role="listbox" hidden></ul>
+          <select id="filtre-depart" class="select-filtre" aria-labelledby="label-filtre-depart"></select>
         </div>
       </div>
 
@@ -115,112 +106,5 @@
   <!-- NE PAS MODIFIER -->
   <script src="../functions.js"></script>
   <script src="../main.js"></script>
-  <script>
-    (function () {
-      /* ---- Menu burger ---- */
-      var burger = document.getElementById("nav-burger");
-      var nav = document.getElementById("nav-principale");
-      var overlay = document.getElementById("nav-overlay");
-
-      function fermerMenu() {
-        document.body.classList.remove("menu-ouvert");
-        if (burger) {
-          burger.setAttribute("aria-expanded", "false");
-          burger.setAttribute("aria-label", "Ouvrir le menu");
-        }
-        if (overlay) overlay.hidden = true;
-      }
-
-      function ouvrirMenu() {
-        document.body.classList.add("menu-ouvert");
-        if (burger) {
-          burger.setAttribute("aria-expanded", "true");
-          burger.setAttribute("aria-label", "Fermer le menu");
-        }
-        if (overlay) overlay.hidden = false;
-      }
-
-      if (burger && nav && overlay) {
-        burger.addEventListener("click", function () {
-          if (document.body.classList.contains("menu-ouvert")) fermerMenu();
-          else ouvrirMenu();
-        });
-        overlay.addEventListener("click", fermerMenu);
-        nav.addEventListener("click", function (e) {
-          if (e.target.closest("a")) fermerMenu();
-        });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            fermerMenu();
-            fermerSelect();
-          }
-        });
-        window.addEventListener("resize", function () {
-          if (window.matchMedia("(min-width: 960px)").matches) fermerMenu();
-        });
-      }
-
-      /* ---- Select Départ : liste toujours vers le bas ---- */
-      var select = document.getElementById("filtre-depart");
-      var trigger = document.getElementById("filtre-depart-trigger");
-      var liste = document.getElementById("filtre-depart-liste");
-      var triggerTexte = trigger ? trigger.querySelector(".select-trigger-texte") : null;
-
-      function fermerSelect() {
-        if (!liste || !trigger) return;
-        liste.hidden = true;
-        trigger.setAttribute("aria-expanded", "false");
-        trigger.classList.remove("est-ouvert");
-      }
-
-      function ouvrirSelect() {
-        if (!liste || !trigger) return;
-        liste.hidden = false;
-        trigger.setAttribute("aria-expanded", "true");
-        trigger.classList.add("est-ouvert");
-      }
-
-      function synchroniserListe() {
-        if (!select || !liste || !triggerTexte) return;
-        var options = Array.prototype.slice.call(select.options);
-        liste.innerHTML = "";
-        options.forEach(function (opt) {
-          var li = document.createElement("li");
-          li.setAttribute("role", "option");
-          li.dataset.value = opt.value;
-          li.textContent = opt.textContent;
-          if (opt.selected) {
-            li.setAttribute("aria-selected", "true");
-            triggerTexte.textContent = opt.textContent;
-          }
-          li.addEventListener("click", function () {
-            select.value = opt.value;
-            select.dispatchEvent(new Event("change", { bubbles: true }));
-            triggerTexte.textContent = opt.textContent;
-            liste.querySelectorAll('[role="option"]').forEach(function (el) {
-              el.removeAttribute("aria-selected");
-            });
-            li.setAttribute("aria-selected", "true");
-            fermerSelect();
-          });
-          liste.appendChild(li);
-        });
-      }
-
-      if (select && trigger && liste) {
-        trigger.addEventListener("click", function (e) {
-          e.preventDefault();
-          if (liste.hidden) ouvrirSelect();
-          else fermerSelect();
-        });
-        document.addEventListener("click", function (e) {
-          if (!e.target.closest(".select-custom")) fermerSelect();
-        });
-        var observer = new MutationObserver(synchroniserListe);
-        observer.observe(select, { childList: true });
-        synchroniserListe();
-      }
-    })();
-  </script>
 </body>
 </html>
