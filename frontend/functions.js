@@ -26,7 +26,18 @@ function compterTrajetsAujourdhui(trajets, dateAujourdhui) {
      * @return {number} - nombre de trajets à cette date
      * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
      */
-    // TODO
+    if (!Array.isArray(trajets) || typeof dateAujourdhui !== "string") {
+        return 0;
+    }
+
+    var compteur = 0;
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+        if (trajet && typeof trajet === "object" && trajet.date === dateAujourdhui) {
+            compteur += 1;
+        }
+    }
+    return compteur;
 }
 
 function formaterQuartierPrincipal(compteParQuartier) {
@@ -36,7 +47,32 @@ function formaterQuartierPrincipal(compteParQuartier) {
      * @return {string} - ex: "Poto-Poto (8 trajets)"
      * Si l'objet est vide, retourne "Aucun trajet".
      */
-    // TODO
+    if (!compteParQuartier || typeof compteParQuartier !== "object") {
+        return "Aucun trajet";
+    }
+
+    var meilleurQuartier = null;
+    var meilleurCompte = -Infinity;
+    for (var quartier in compteParQuartier) {
+        if (!Object.prototype.hasOwnProperty.call(compteParQuartier, quartier)) {
+            continue;
+        }
+        var compte = compteParQuartier[quartier];
+        if (typeof compte !== "number" || isNaN(compte)) {
+            continue;
+        }
+        if (compte > meilleurCompte) {
+            meilleurCompte = compte;
+            meilleurQuartier = quartier;
+        }
+    }
+
+    if (meilleurQuartier === null || meilleurCompte < 0) {
+        return "Aucun trajet";
+    }
+
+    var suffixe = meilleurCompte === 1 ? " trajet" : " trajets";
+    return meilleurQuartier + " (" + meilleurCompte + suffixe + ")";
 }
 
 // ============================================================================
@@ -51,7 +87,38 @@ function filtrerParQuartierDepart(trajets, quartier) {
      * @return {Array} - trajets filtrés
      * Si quartier est vide ou null, retourne tous les trajets.
      */
-    // TODO
+
+    // Contrôle : trajets doit être une liste
+    if (!Array.isArray(trajets)) {
+        return [];
+    }
+
+    // Contrôle : quartier vide / null / undefined → on garde tout
+    if (quartier === null || quartier === undefined || quartier === "") {
+        return trajets;
+    }
+
+    // Contrôle : ignorer les espaces seuls (ex: "   ")
+    var quartierNettoye = String(quartier).trim();
+    if (quartierNettoye === "") {
+        return trajets;
+    }
+
+    // On parcourt la liste et on garde les bons trajets
+    var resultat = [];
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+
+        // Contrôle : ignorer une entrée invalide
+        if (!trajet || typeof trajet !== "object") {
+            continue;
+        }
+
+        if (trajet.quartier_depart === quartierNettoye) {
+            resultat.push(trajet);
+        }
+    }
+    return resultat;
 }
 
 function rechercherParMotCle(trajets, motCle) {
@@ -63,7 +130,46 @@ function rechercherParMotCle(trajets, motCle) {
      * @return {Array} - trajets correspondants
      * Si motCle est vide, retourne tous les trajets.
      */
-    // TODO
+
+    // Contrôle : trajets doit être une liste
+    if (!Array.isArray(trajets)) {
+        return [];
+    }
+
+    // Contrôle : mot-clé vide / null / undefined → on garde tout
+    if (motCle === null || motCle === undefined || motCle === "") {
+        return trajets;
+    }
+
+    // Contrôle : ignorer les espaces seuls, et passer en minuscules
+    var motNettoye = String(motCle).trim().toLowerCase();
+    if (motNettoye === "") {
+        return trajets;
+    }
+
+    // On parcourt la liste et on cherche le mot dans 3 champs
+    var resultat = [];
+    for (var i = 0; i < trajets.length; i++) {
+        var trajet = trajets[i];
+
+        // Contrôle : ignorer une entrée invalide
+        if (!trajet || typeof trajet !== "object") {
+            continue;
+        }
+
+        var depart = String(trajet.quartier_depart || "").toLowerCase();
+        var arrivee = String(trajet.quartier_arrivee || "").toLowerCase();
+        var commentaire = String(trajet.commentaire || "").toLowerCase();
+
+        var trouveDansDepart = depart.indexOf(motNettoye) !== -1;
+        var trouveDansArrivee = arrivee.indexOf(motNettoye) !== -1;
+        var trouveDansCommentaire = commentaire.indexOf(motNettoye) !== -1;
+
+        if (trouveDansDepart || trouveDansArrivee || trouveDansCommentaire) {
+            resultat.push(trajet);
+        }
+    }
+    return resultat;
 }
 
 // ============================================================================
@@ -96,6 +202,7 @@ function formaterHeure(heure) {
 function validerFormulaireProposer(formulaire) {
     /**
      * Valide le formulaire de proposition de trajet.
+     * 
      * @param {Object} formulaire - avec les clés : quartier_depart,
      *   quartier_arrivee, heure, places_dispo, prix_place
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -107,6 +214,38 @@ function validerFormulaireProposer(formulaire) {
      * - prix_place > 0
      */
     // TODO
+    var erreurs = [];
+    var arrive = formulaire && formulaire.quartier_arrivee;
+    var depart = formulaire && formulaire.quartier_depart;
+    var places = formulaire && formulaire.places_dispo;
+    var prix = formulaire && formulaire.prix_place;
+    var heure = formulaire && formulaire.heure;
+    var heureRegex = /^([01]\d|2[0-3]):([0-5]\d)$/; // regex pour vérifier le format HH:MM
+
+    if(!depart || depart.trim() === "") {
+        erreurs.push("Le quartier de départ doit être obligatoirement renseigné.");
+    }
+    if(!arrive || arrive.trim() === "") {
+        erreurs.push("Vous devez renseigner le quartier d'arrivée.");
+    }
+    if(depart && arrive && depart.trim() === arrive.trim()) {
+        erreurs.push("Le lieu de départ et d'arrivée doivent être différents.");
+    }
+    if(!heure || heure.trim() === "") {
+        erreurs.push("Veillez renseigner l'heure de votre départ.");
+    } else if(!heureRegex.test(heure)) {
+        erreurs.push("L'heure doit être au format Heures : Minutes (ex: 08:40).");
+    }
+    if(places === undefined || places === null || places == "") {
+        erreurs.push("Veuillez indiquer le nombre de places disponibles.");
+    }else{
+        var placesNum = Number(places);
+        if(!Number.isInteger(placesNum) || placesNum < 1 || placesNum > 8) {
+            erreurs.push("Le nombre de places disponibles doit être compris entre 1 et 8.");
+        }
+    }
+    return{valide: erreurs.length === 0, erreurs: erreurs};
+
 }
 
 function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure) {
@@ -118,6 +257,7 @@ function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure
      *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
      */
     // TODO
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================
@@ -195,7 +335,7 @@ function getBadgeDisponibilite(placesRestantes) {
 // ============================================================================
 
 function validerFormulaireInscription(formulaire) {
-    /**
+    /* *
      * Valide le formulaire d'inscription.
      * @param {Object} formulaire - avec les clés : nom, telephone, mot_de_passe
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -205,11 +345,63 @@ function validerFormulaireInscription(formulaire) {
      * - telephone obligatoire, au moins 9 chiffres
      * - mot_de_passe obligatoire, au moins 4 caractères
      */
-    // TODO
+    
+
+    let erreurs =  [];
+
+    // Vérification du nom
+
+    if (!formulaire.nom || formulaire.nom.trim() === ""){
+        erreurs.push("le nom est obligatoire.");
+    }
+
+    // Vérification du téléphone
+
+    if (!formulaire.telephone || formulaire.telephone.trim() ===""){
+        erreurs.push("Le numéro de téléphone est obligatoire.");
+
+    }
+    else{
+
+        // garde seulement les chiffres
+        let telephone = formulaire.telephone.replace(/\D/g,"");
+
+        if (telephone.length < 9) {
+            erreurs.push(
+                "Le numéro de téléphone doit contenir au moins 9 chiffres."
+            )
+        }
+    }
+
+
+    // Vérification du mot de passe
+
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+
+        erreurs.push("Le mot de passe est obligatoire.");
+
+    } 
+    else if (formulaire.mot_de_passe.length < 4) {
+
+        erreurs.push(
+            "Le mot de passe doit contenir au moins 4 caractères."
+        );
+
+    }
+    return {
+
+        valide: erreurs.length === 0,
+
+        erreurs: erreurs
+
+    };
+
 }
 
+
+
 function validerFormulaireLogin(formulaire) {
-    /**
+    /*
      * Valide le formulaire de connexion.
      * @param {Object} formulaire - avec les clés : telephone, mot_de_passe
      * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
@@ -218,7 +410,44 @@ function validerFormulaireLogin(formulaire) {
      * - telephone obligatoire
      * - mot_de_passe obligatoire
      */
-    // TODO
+    
+
+    let erreurs = [];
+
+    // Vérification téléphone
+
+    if (!formulaire.telephone || formulaire.telephone.trim() === "") {
+
+
+        erreurs.push(
+            "Le numéro de téléphone est obligatoire."
+        );
+
+
+    }
+
+    // Vérification mot de passe
+
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+
+
+        erreurs.push(
+            "Le mot de passe est obligatoire."
+        );
+
+
+    }
+
+    return {
+
+
+        valide: erreurs.length === 0,
+
+
+        erreurs: erreurs
+
+
+    };
 }
 
 // ============================================================================

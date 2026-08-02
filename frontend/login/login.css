@@ -1,0 +1,673 @@
+/* ********************************
+   CHARTE AFRIMOVE
+******************************** */
+
+:root{
+
+    --primary:#006b3f;
+    --primary-container:#008751;
+    --on-primary:#ffffff;
+
+    --surface:#f9f9fc;
+    --surface-container:#eeeef0;
+
+    --on-surface:#1a1c1e;
+    --on-surface-variant:#3e4a41;
+
+    --outline:#6e7a70;
+    --outline-variant:#bdcabe;
+
+    --error:#ba1a1a;
+    --error-container:#ffdad6;
+
+    --r-s:4px;
+    --r-m:8px;
+    --r-l:12px;
+    --r-full:999px;
+
+    --font-headline:'Montserrat',sans-serif;
+    --font-body:'Inter',sans-serif;
+
+}
+
+
+
+/* ********************************
+   RESET
+******************************** */
+
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+
+body{
+
+    min-height:100vh;
+
+    background:var(--surface);
+
+    color:var(--on-surface);
+
+    font-family:var(--font-body);
+
+}
+
+
+
+/* ********************************
+   SESSION NAV
+******************************** */
+
+
+#nav-session{
+
+    position:absolute;
+
+    top:25px;
+
+    right:30px;
+
+}
+
+
+
+#nav-session a{
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-left:15px;
+
+}
+
+
+
+#nav-session button{
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:var(--r-m);
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* ********************************
+   STRUCTURE PRINCIPALE
+******************************** */
+
+
+main{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+
+
+
+
+/* ********************************
+   CARTE PRINCIPALE
+******************************** */
+
+
+.login-container{
+
+
+    width:430px;
+
+    max-width:100%;
+
+
+    background:white;
+
+
+    padding:40px;
+
+
+    border-radius:var(--r-l);
+
+
+    border:1px solid var(--outline-variant);
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.08);
+
+
+}
+
+
+
+
+
+/* ********************************
+   LOGO
+******************************** */
+
+
+.logo{
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+.logo-icon {
+
+
+    font-size:40px;
+
+    color:var(--primary);
+
+
+}
+
+
+
+.logo h1{
+
+
+    font-family:var(--font-headline);
+
+    font-weight:800;
+
+    font-size:32px;
+
+    color:var(--primary);
+
+}
+
+
+
+
+
+/* ********************************
+   TITRE
+******************************** */
+
+
+.login-header h2{
+
+
+    font-family:var(--font-headline);
+
+    color:var(--on-surface);
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.login-header p{
+
+
+    color:var(--on-surface-variant);
+
+    font-size:14px;
+
+    line-height:22px;
+
+
+}
+
+
+
+
+
+/* ********************************
+   FORMULAIRE
+******************************** */
+
+
+.login-form{
+
+
+    width:100%;
+
+
+    margin-top:30px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+
+    gap:18px;
+
+
+}
+
+
+
+
+.form-group{
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+
+}
+
+
+
+.form-group label{
+
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--on-surface);
+
+
+}
+
+
+
+.form-group input{
+
+
+    height:48px;
+
+
+    width:100%;
+
+
+    padding:0 15px;
+
+
+    background:white;
+
+
+    border-radius:var(--r-m);
+
+
+    border:1.5px solid var(--outline-variant);
+
+
+    font-family:var(--font-body);
+
+
+    font-size:15px;
+
+
+    outline:none;
+
+
+    transition:.25s ease;
+
+
+}
+
+
+
+.form-group input:focus{
+
+
+    border-color:var(--primary);
+
+
+    box-shadow:
+
+    0 0 0 3px rgba(0,107,63,.15);
+
+
+}
+
+
+
+
+
+
+
+/* ********************************
+   BOUTON
+******************************** */
+
+
+.login-btn{
+
+
+    height:48px;
+
+
+    border:none;
+
+
+    border-radius:var(--r-m);
+
+
+    background:var(--primary);
+
+
+    color:var(--on-primary);
+
+
+    font-family:var(--font-body);
+
+
+    font-size:15px;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s ease;
+
+
+}
+
+
+
+.login-btn:hover{
+
+
+    background:var(--primary-container);
+
+
+}
+
+
+
+
+
+/* ********************************
+   ERREURS
+******************************** */
+
+
+.erreurs{
+
+
+    margin-top:15px;
+
+
+    background:var(--error-container);
+
+
+    color:var(--error);
+
+
+    border-radius:var(--r-m);
+
+
+    padding:12px;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+.erreurs ul{
+
+    padding-left:20px;
+
+}
+#erreur-globale{
+
+    color:var(--error);
+
+    background:var(--error-container);
+
+    padding:12px;
+
+    border-radius:var(--r-m);
+
+    margin:20px auto;
+
+    text-align:center;
+
+    max-width:400px;
+
+}
+
+
+
+
+/* ********************************
+   FOOTER
+******************************** */
+
+
+.login-footer{
+
+
+    text-align:center;
+
+
+    margin-top:25px;
+
+
+    font-size:14px;
+
+
+    color:var(--on-surface-variant);
+
+
+}
+
+
+
+.login-footer a{
+
+
+    color:var(--primary);
+
+
+    font-weight:700;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+.login-footer a:hover{
+
+
+    color:var(--primary-container);
+
+
+    text-decoration:underline;
+
+
+}
+
+
+
+
+
+
+/* ********************************
+   TABLETTE
+******************************** */
+
+
+@media screen and (max-width:992px){
+
+
+    main{
+
+        padding:25px;
+
+    }
+
+
+
+    .login-container{
+
+
+        width:450px;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ********************************
+   MOBILE
+******************************** */
+
+
+@media screen and (max-width:768px){
+
+
+    body{
+
+        background:white;
+
+    }
+
+
+
+    main{
+
+
+        padding:70px 15px 20px;
+
+
+        align-items:flex-start;
+
+
+    }
+
+
+
+
+    .login-container{
+
+
+        width:100%;
+
+
+        padding:30px 20px;
+
+
+        border-radius:0;
+
+
+        border:none;
+
+
+        box-shadow:none;
+
+
+    }
+
+
+
+
+
+    .logo h1{
+
+
+        font-size:26px;
+
+
+    }
+
+
+
+
+    .logo i{
+
+
+        font-size:32px;
+
+
+    }
+
+
+
+
+
+    .login-header h2{
+
+
+        font-size:20px;
+
+
+    }
+
+
+
+
+
+    .login-header p{
+
+
+        font-size:13px;
+
+
+    }
+
+
+
+}
