@@ -348,8 +348,14 @@ def compter_trajets_par_quartier_depart(trajets):
         compter_trajets_par_quartier_depart(trajets)
         -> {"Bacongo": 2, "Moungali": 1}
     """
-    # TODO : à compléter
-    pass
+    quartier = {}
+    for trajet in trajets:
+        nom_q = trajet["quartier_depart"]
+        if nom_q not in quartier:
+            quartier[nom_q] = 0
+        quartier[nom_q] += 1
+
+    return quartier
 
 
 def top_conducteurs_par_note(conducteurs, n=3):
@@ -377,8 +383,9 @@ def top_conducteurs_par_note(conducteurs, n=3):
         top_conducteurs_par_note(conducteurs, n=2)
         -> [{"nom": "Jean", "note": 4.9}, {"nom": "Sandra", "note": 4.7}]
     """
-    # TODO : à compléter
-    pass
+    conducteurs_tries = sorted(conducteurs, key=lambda x: x["note"], reverse=True)
+
+    return conducteurs_tries[:n]
 
 
 def calculer_prix_moyen_par_quartier(trajets):
@@ -404,8 +411,25 @@ def calculer_prix_moyen_par_quartier(trajets):
         -> {"Bacongo": 500}
         (moyenne de 500, 400 et 600 = 500)
     """
-    # TODO : à compléter
-    pass
+    somme_prix = {}
+    compteur_quartier = {}
+
+    for trajet in trajets:
+        q = trajet["quartier_depart"]
+        prix = trajet["prix_place"]
+
+        if q not in somme_prix:
+            somme_prix[q] = 0
+            compteur_quartier[q] = 0
+
+        somme_prix[q] += prix
+        compteur_quartier[q] += 1
+
+    moyennes = {}
+    for q in somme_prix:
+        moyennes[q] = round(somme_prix[q] / compteur_quartier[q])
+
+    return moyennes
 
 
 def identifier_trajet_le_plus_reserve(trajets, reservations):
@@ -445,8 +469,24 @@ def identifier_trajet_le_plus_reserve(trajets, reservations):
         identifier_trajet_le_plus_reserve(trajets, reservations)
         -> {"trajet_id": 1, "trajet_libelle": "Bacongo → Poto-Poto", "nombre_reservations": 2}
     """
-    # TODO : à compléter
-    pass
+    meilleur_trajet = None
+    max_reservations = -1
+
+    for trajet in trajets:
+        nb_reservations = compter_reservations_par_trajet(trajet["id"], reservations)
+
+        if nb_reservations > max_reservations:
+            max_reservations = nb_reservations
+            meilleur_trajet = trajet
+
+    if max_reservations == 0 or meilleur_trajet is None:
+        return None
+
+    return {
+        "trajet_id": meilleur_trajet["id"],
+        "trajet_libelle": f"{meilleur_trajet['quartier_depart']} → {meilleur_trajet['quartier_arrivee']}",
+        "nombre_reservations": max_reservations
+    }
 
 
 def calculer_indicateurs_dashboard(trajets, reservations, conducteurs):
@@ -489,8 +529,30 @@ def calculer_indicateurs_dashboard(trajets, reservations, conducteurs):
             "note_moyenne_conducteurs": 4.7
         }
     """
-    # TODO : à compléter
-    pass
+    total_trajets_disponibles = 0
+    for trajet in trajets:
+        if trajet["places_dispo"] >= 1:
+            total_trajets_disponibles += 1
+
+    total_reservations_actives = 0
+    for reservation in reservations:
+        if reservation["statut"] == "effectue" or reservation["statut"] == "en_attente":
+            total_reservations_actives += 1
+
+    if len(conducteurs) == 0:
+        note_moyenne_conducteurs = 0.0
+    else:
+        somme_notes = 0
+        for conducteur in conducteurs:
+            somme_notes += conducteur["note"]
+        note_moyenne_conducteurs = round(somme_notes / len(conducteurs), 1)
+
+    return {
+        "total_trajets_disponibles": total_trajets_disponibles,
+        "total_conducteurs_actifs": len(conducteurs),
+        "total_reservations_actives": total_reservations_actives,
+        "note_moyenne_conducteurs": note_moyenne_conducteurs
+    }
 
 
 # ========================================================================
