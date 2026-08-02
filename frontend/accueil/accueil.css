@@ -16,6 +16,13 @@ body#page-accueil {
     font-family: var(--corps);
 }
 
+.nav-liens a {
+    text-decoration: none;
+    padding: 0.35rem 0.65rem;
+    white-space: nowrap;
+}
+
+
 main {
     width: min(1200px, calc(100% - 2rem));
     margin: 0 auto;
@@ -211,46 +218,6 @@ main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.site-footer {
-    padding: 2rem 0 1.2rem;
-    border-top: 1px solid var(--bordure);
-}
-
-.footer-contenu {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-.footer-titre {
-    margin: 0 0 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.footer-liens {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.footer-liens a {
-    color: var(--accent-fonce);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer-liens a:hover {
-    text-decoration: underline;
-}
-
-.footer-copyright {
-    margin: 1.5rem 0 0;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-}
 
 #erreur-globale {
     position: fixed;
