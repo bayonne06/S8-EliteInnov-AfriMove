@@ -286,7 +286,6 @@ def filtrer_reservations_par_statut(reservations, statut):
         filtrer_reservations_par_statut(reservations, "effectue")
         -> [{"id": 1, "statut": "effectue"}, {"id": 3, "statut": "effectue"}]
     """
-    # TODO : à compléter
     result = []
     for reservation in reservations:
         if reservation["statut"] == statut:
@@ -317,7 +316,6 @@ def historique_reservations_passager(passager_tel, reservations):
         historique_reservations_passager("067111222", reservations)
         -> [{"id": 1, "passager_tel": "067111222"}, {"id": 3, "passager_tel": "067111222"}]
     """
-    # TODO : à compléter
     result = []
     for reservation in reservations:
         if reservation["passager_tel"] == passager_tel:
