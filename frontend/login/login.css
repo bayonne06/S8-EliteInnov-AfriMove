@@ -61,56 +61,6 @@ body{
 
 
 
-/* ********************************
-   SESSION NAV
-******************************** */
-
-
-#nav-session{
-
-    position:absolute;
-
-    top:25px;
-
-    right:30px;
-
-}
-
-
-
-#nav-session a{
-
-    text-decoration:none;
-
-    color:var(--primary);
-
-    font-weight:700;
-
-    margin-left:15px;
-
-}
-
-
-
-#nav-session button{
-
-    border:none;
-
-    background:var(--primary);
-
-    color:white;
-
-    padding:8px 15px;
-
-    border-radius:var(--r-m);
-
-    cursor:pointer;
-
-}
-
-
-
-
 
 /* ********************************
    STRUCTURE PRINCIPALE
@@ -119,7 +69,7 @@ body{
 
 main{
 
-    min-height:100vh;
+    min-height:calc(100vh - var(--header-h, 64px) - 8rem);
 
     display:flex;
 

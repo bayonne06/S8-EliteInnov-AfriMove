@@ -3,20 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> AfriMove — Connexion</title>
-  <link rel="stylesheet" href="login.css">
+  <title>AfriMove — Connexion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body id="page-login">
 
-  <!-- NAVIGATION — TODO (Dev FS7) -->
+  <header class="site-header">
+    <div class="nav-barre">
+      <a class="nav-marque" href="../accueil/index.html">AfriMove</a>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+      <!-- PAS d'attribut "hidden" : il casse le sélecteur ":checked ~" sur certains moteurs.
+           Le masquage se fait uniquement en CSS (.nav-toggle). -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <label for="nav-toggle" class="nav-burger" aria-label="Ouvrir le menu">
+        <span class="nav-burger-lignes" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </label>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <ul class="nav-liens" id="nav-liens">
+          <li><a href="../accueil/index.html">Accueil</a></li>
+          <li><a href="../recherche/recherche.html">Recherche</a></li>
+          <li><a href="../proposer/proposer.html">Proposer un trajet</a></li>
+          <li><a href="../mes-trajets/mes-trajets.html">Mes trajets</a></li>
+        </ul>
+
+        <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+        <div id="nav-session"></div>
+      </nav>
+
+      <!-- Overlay frère de #nav-toggle : .nav-toggle:checked ~ .nav-overlay l'affiche ;
+           le label referme le menu au clic (décoche la checkbox). -->
+      <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
+    </div>
+  </header>
 
   <main>
     <!-- =====================================================================
@@ -97,6 +126,23 @@
       </footer>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-contenu">
+      <div class="footer-marque">
+        <span class="footer-logo">AfriMove</span>
+        <p>Covoiturage inter-quartiers : un rendez-vous fiable, un prix affiché avant de monter.</p>
+      </div>
+      <nav class="footer-liens" aria-label="Liens du pied de page">
+        <a href="../accueil/index.html">Accueil</a>
+        <a href="../recherche/recherche.html">Recherche</a>
+        <a href="../proposer/proposer.html">Proposer un trajet</a>
+        <a href="../mes-trajets/mes-trajets.html">Mes trajets</a>
+        <a href="login.html" aria-current="page">Connexion</a>
+      </nav>
+    </div>
+    <p class="footer-copyright">© 2026 AfriMove — Projet Akieni Academy, Groupe 6 (EliteInnov)</p>
+  </footer>
 
   <div id="erreur-globale" hidden></div>
 
