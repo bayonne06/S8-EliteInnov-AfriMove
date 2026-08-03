@@ -1,0 +1,269 @@
+/* =============================================================
+   BraCovoit / AfriMouv — confirmation.css
+   Page de confirmation (Dev FS6)
+   Charte : maquettes Stitch — voir variables ci-dessous
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Couleurs de marque */
+  --vert-primaire: #006b3f;
+  --vert-primaire-hover: #00552f;
+  --vert-conteneur: #008751;
+  --or: #ffd31a;
+  --rouge: #e22923;
+  --erreur: #ba1a1a;
+
+  --fond: #f9f9fc;
+  --surface: #eeeef0;
+  --texte: #1a1c1e;
+  --texte-doux: #55585c;
+  --bordure: #dcdce0;
+
+  /* Typo */
+  --police-titres: "Montserrat", sans-serif;
+  --police-texte: "Inter", sans-serif;
+
+  /* Espacements (base 8px) */
+  --esp-1: 8px;
+  --esp-2: 16px;
+  --esp-3: 24px;
+  --esp-4: 32px;
+  --esp-6: 48px;
+  --esp-8: 64px;
+
+  /* Rayons */
+  --rayon-sm: 4px;
+  --rayon-md: 8px;
+  --rayon-lg: 12px;
+  --rayon-full: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body#page-confirmation {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+/* -----------------------------------------------------------
+   En-tête
+   ----------------------------------------------------------- */
+
+.entete {
+  background: #ffffff;
+  border-bottom: 1px solid var(--bordure);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.entete-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--esp-2) var(--esp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+}
+
+.marque {
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--texte);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.marque em {
+  font-style: normal;
+  color: var(--vert-primaire);
+}
+
+.nav-principale {
+  display: flex;
+  gap: var(--esp-3);
+  margin-right: auto;
+}
+
+.lien-nav {
+  font-family: var(--police-texte);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--texte-doux);
+  text-decoration: none;
+  padding: var(--esp-1) 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.lien-nav:hover {
+  color: var(--texte);
+}
+
+.lien-nav--actif {
+  color: var(--vert-primaire);
+  border-bottom-color: var(--vert-primaire);
+  font-weight: 600;
+}
+
+.nav-session {
+  min-height: 1px; /* réservé à main.js */
+}
+
+/* -----------------------------------------------------------
+   Contenu principal
+   ----------------------------------------------------------- */
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--esp-8) var(--esp-3) var(--esp-8);
+}
+
+/* Bloc de confirmation */
+
+.bloc-confirmation {
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-lg);
+  padding: var(--esp-6) var(--esp-4);
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(26, 28, 30, 0.04);
+}
+
+.bloc-confirmation::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--esp-3);
+  border-radius: var(--rayon-full);
+  background: var(--vert-conteneur);
+  background-image:
+    linear-gradient(45deg, transparent 42%, #ffffff 42%, #ffffff 48%, transparent 48%),
+    linear-gradient(-45deg, transparent 52%, #ffffff 52%, #ffffff 58%, transparent 58%);
+  background-repeat: no-repeat;
+}
+
+.bloc-confirmation h1 {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin: 0 0 var(--esp-2);
+  color: var(--texte);
+}
+
+.bloc-confirmation p#confirmation-message {
+  font-size: 1rem;
+  color: var(--texte-doux);
+  margin: 0;
+}
+
+/* Prochaines étapes */
+
+.prochaines-etapes {
+  margin-top: var(--esp-4);
+}
+
+.prochaines-etapes h2 {
+  font-family: var(--police-titres);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texte-doux);
+  text-align: center;
+  margin: 0 0 var(--esp-3);
+}
+
+.prochaines-etapes a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: var(--esp-2) var(--esp-3);
+  border-radius: var(--rayon-md);
+  margin-bottom: var(--esp-2);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.prochaines-etapes a:last-child {
+  margin-bottom: 0;
+}
+
+/* Action principale : "Voir mes trajets" */
+.prochaines-etapes a#lien-mes-trajets {
+  background: var(--vert-primaire);
+  color: #ffffff;
+}
+
+.prochaines-etapes a#lien-mes-trajets:hover {
+  background: var(--vert-primaire-hover);
+}
+
+/* Actions secondaires */
+.prochaines-etapes a:not(#lien-mes-trajets) {
+  background: var(--surface);
+  color: var(--texte);
+  border: 1px solid var(--bordure);
+}
+
+.prochaines-etapes a:not(#lien-mes-trajets):hover {
+  background: #ffffff;
+  border-color: var(--vert-primaire);
+  color: var(--vert-primaire);
+}
+
+/* Accessibilité : focus clavier visible */
+.lien-nav:focus-visible,
+.prochaines-etapes a:focus-visible {
+  outline: 2px solid var(--vert-primaire);
+  outline-offset: 2px;
+}
+
+/* -----------------------------------------------------------
+   Responsive
+   ----------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .entete-inner {
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+  }
+
+  .nav-principale {
+    order: 3;
+    width: 100%;
+    gap: var(--esp-2);
+    overflow-x: auto;
+  }
+
+  main {
+    padding: var(--esp-4) var(--esp-2) var(--esp-6);
+  }
+
+  .bloc-confirmation {
+    padding: var(--esp-4) var(--esp-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
