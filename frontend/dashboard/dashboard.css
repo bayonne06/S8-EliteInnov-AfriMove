@@ -625,6 +625,7 @@ input::placeholder { color: var(--texte-muet); }
 /* -------------------------------------------------------------
    Responsive nav
    ------------------------------------------------------------- */
+   
 @media (max-width: 640px) {
   .entete-inner {
     flex-wrap: wrap;
