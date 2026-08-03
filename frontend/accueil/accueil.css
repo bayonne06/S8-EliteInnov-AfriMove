@@ -16,13 +16,6 @@ body#page-accueil {
     font-family: var(--corps);
 }
 
-.nav-liens a {
-    text-decoration: none;
-    padding: 0.35rem 0.65rem;
-    white-space: nowrap;
-}
-
-
 main {
     width: min(1200px, calc(100% - 2rem));
     margin: 0 auto;
