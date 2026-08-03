@@ -3,70 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Tableau de bord</title>
+  <title>AfriMouv — Tableau de bord</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
+
 <body id="page-dashboard">
 
-  <!-- NAVIGATION — TODO (Dev FS6) -->
+  <!-- NAVIGATION -->
+   
+  <header class="entete">
+    <div class="entete-inner">
+      <a class="marque" href="#page-dashboard">Afri<em>Mouv</em></a>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+      <nav class="nav-principale" aria-label="Navigation principale">
+        <a href="#" class="lien-nav lien-nav--actif" aria-current="page">Tableau de bord</a>
+        <a href="#" class="lien-nav">Trajets</a>
+        <a href="#" class="lien-nav">Réservations</a>
+        <a href="#" class="lien-nav">Profil</a>
+      </nav>
 
-  <main>
+      <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+
+      <div id="nav-session" class="nav-session"></div>
+    </div>
+  </header>
+
+  <main class="conteneur">
+
+    <div class="entete-page">
+      <p class="eyebrow">Vue d'ensemble</p>
+      <h1>Tableau de bord</h1>
+    </div>
+
     <!-- =====================================================================
-         CARTES INDICATEURS — TODO (Dev FS6)
+         CARTES INDICATEURS
          5 cartes chiffres clés. Layout : Grid responsive (1 colonne mobile,
          2-3 tablette, 5 desktop).
-
-         *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <section class="grille-indicateurs">
-      <div class="carte-indicateur"><p class="label">Trajets disponibles</p><p id="d-trajets" class="valeur"></p></div>
-      <div class="carte-indicateur"><p class="label">Conducteurs actifs</p><p id="d-conducteurs" class="valeur"></p></div>
-      <div class="carte-indicateur"><p class="label">Réservations actives</p><p id="d-reservations" class="valeur"></p></div>
-      <div class="carte-indicateur"><p class="label">Note moyenne</p><p id="d-note" class="valeur"></p></div>
-      <div class="carte-indicateur"><p class="label">Taux d'annulation</p><p id="d-taux-annulation" class="valeur"></p></div>
+
+    <section class="grille-indicateurs" aria-label="Indicateurs clés">
+
+      <div class="carte-indicateur carte-indicateur--vert">
+        <p class="label">Trajets disponibles</p>
+        <p id="d-trajets" class="valeur">—</p>
+      </div>
+
+      <div class="carte-indicateur">
+        <p class="label">Conducteurs actifs</p>
+        <p id="d-conducteurs" class="valeur">—</p>
+      </div>
+
+      <div class="carte-indicateur">
+        <p class="label">Réservations actives</p>
+        <p id="d-reservations" class="valeur">—</p>
+      </div>
+
+      <div class="carte-indicateur carte-indicateur--or">
+        <p class="label">Note moyenne</p>
+        <p id="d-note" class="valeur">—</p>
+      </div>
+
+      <div class="carte-indicateur carte-indicateur--rouge">
+        <p class="label">Taux d'annulation</p>
+        <p id="d-taux-annulation" class="valeur">—</p>
+      </div>
+
     </section>
+
+    <div class="grille-secondaire">
+
+      <!-- =====================================================================
+           TOP CONDUCTEURS
+           main.js remplit cette liste ordonnée avec des <li> contenant un
+           rang, un nom, une note et un nombre de trajets.
+           ===================================================================== -->
+
+      <section class="bloc bloc--podium" aria-labelledby="titre-podium">
+        <h2 id="titre-podium">Top 3 conducteurs</h2>
+        <ol id="d-top-conducteurs" class="podium"></ol>
+      </section>
+
+      <!-- TRAJET VEDETTE -->
+
+      <section class="bloc bloc--vedette" aria-labelledby="titre-vedette">
+        <p class="eyebrow eyebrow--vedette">Itinéraire vedette</p>
+        <h2 id="titre-vedette" class="sr-only">Trajet vedette</h2>
+        <p id="d-trajet-top" class="texte-vedette">—</p>
+      </section>
+    </div>
 
     <!-- =====================================================================
-         TOP CONDUCTEURS — TODO (Dev FS6)
-         main.js remplit cette liste ordonnée avec des <li> contenant un
-         rang, un nom, une note et un nombre de trajets. Stylez comme un
-         podium ou un classement numéroté.
-
-         *** NE PAS MODIFIER l'id ***
+         TABLEAU PAR QUARTIER
          ===================================================================== -->
-    <section>
-      <h2>Top 3 conducteurs</h2>
-      <ol id="d-top-conducteurs"></ol>
-    </section>
 
-    <!-- TRAJET VEDETTE — TODO (Dev FS6) : mettre en avant visuellement
-         ce trajet (encart distinctif).
-         *** NE PAS MODIFIER l'id *** -->
-    <section>
-      <h2>Trajet vedette</h2>
-      <p id="d-trajet-top"></p>
-    </section>
-
-    <!-- =====================================================================
-         TABLEAU PAR QUARTIER — TODO (Dev FS6)
-         Mettre en forme le tableau (bordures, alternance de lignes,
-         responsive : passage en cartes empilées sous 600px si besoin).
-
-         *** NE PAS MODIFIER l'id ***
-         ===================================================================== -->
-    <section>
-      <h2>Répartition par quartier de départ</h2>
-      <table>
-        <thead><tr><th>Quartier</th><th>Nombre de trajets</th><th>Prix moyen</th></tr></thead>
-        <tbody id="d-trajets-par-quartier"></tbody>
-      </table>
+    <section class="bloc" aria-labelledby="titre-quartiers">
+      <h2 id="titre-quartiers">Répartition par quartier de départ</h2>
+      <div class="table-scroll">
+        <table class="table-quartiers">
+          <thead>
+            <tr>
+              <th scope="col">Quartier</th>
+              <th scope="col">Nombre de trajets</th>
+              <th scope="col">Prix moyen</th>
+            </tr>
+          </thead>
+          <tbody id="d-trajets-par-quartier"></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
-  <div id="erreur-globale" hidden></div>
+  <div id="erreur-globale" class="erreur-globale" hidden></div>
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>

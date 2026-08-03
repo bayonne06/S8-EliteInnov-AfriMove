@@ -1,0 +1,643 @@
+/* =============================================================
+BraCovoit — charte-base.css (v1)
+Variables et composants communs issus de la charte graphique
+validée (maquettes Stitch). À importer en haut du CSS de
+chaque page. Ne stylise que les classes déjà présentes dans
+le HTML du repo — aucune balise à ajouter/renommer.
+============================================================= */
+
+:root {
+  /* Couleurs */
+  --vert-conteneur: #008751;
+  --or: #ffd31a;
+  --rouge: #e22923;
+  --erreur: #ba1a1a;
+  --fond: #f9f9fc;
+  --surface: #eeeef0;
+  --texte: #1a1c1e;
+  --texte-inverse: #ffffff;
+  --texte-muet: #5b5f63;
+  --bordure: #d8d8dd;
+
+  /* Typographie */
+  --police-titres: "Montserrat", "Segoe UI", sans-serif;
+  --police-texte: "Inter", "Segoe UI", sans-serif;
+
+  /* Espacements — base 8px */
+  --espace-1: 8px;
+  --espace-2: 16px;
+  --espace-3: 24px;
+  --espace-4: 32px;
+
+  /* Rayons */
+  --rayon-s: 4px;
+  --rayon-m: 8px;
+  --rayon-l: 12px;
+  --rayon-full: 9999px;
+
+  --ombre: 0 1px 2px rgba(26, 28, 30, 0.06), 0 6px 20px -12px rgba(26, 28, 30, 0.3);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  color: var(--texte);
+  margin: 0;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid #006b3f;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -------------------------------------------------------------
+   Échelle typographique (Display / Headline / Body / Label / Caption)
+   ------------------------------------------------------------- */
+   
+.txt-display {
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.txt-headline {
+  font-family: var(--police-titres);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.txt-body {
+  font-family: var(--police-texte);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--texte);
+}
+
+.txt-label {
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.txt-caption {
+  font-family: var(--police-texte);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--texte-muet);
+}
+
+/* -------------------------------------------------------------
+   .carte-indicateur — accueil, dashboard
+   ------------------------------------------------------------- */
+.carte-indicateur {
+  background: var(--surface);
+  border-radius: var(--rayon-l);
+  padding: var(--espace-2) var(--espace-2);
+}
+
+.carte-indicateur .label {
+  margin: 0;
+  font-family: var(--police-texte);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texte-muet);
+}
+
+.carte-indicateur .valeur {
+  margin: var(--espace-1) 0 0;
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte);
+}
+
+/* Variantes sémantiques (disponibilité / attention / alerte) */
+.carte-indicateur--vert .valeur { 
+    color: #006b3f; 
+}
+.carte-indicateur--or .valeur { color: #a56a00; }
+.carte-indicateur--rouge .valeur { color: var(--rouge); }
+
+/* -------------------------------------------------------------
+   .badge — page trajet, cartes recherche
+   ------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--rayon-full);
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.badge-disponible {
+  background: var(--vert-conteneur);
+  color: var(--texte-inverse);
+}
+
+.badge-limite {
+  background: var(--or);
+  color: #4d3b00;
+}
+
+.badge-complet {
+  background: var(--rouge);
+  color: var(--texte-inverse);
+}
+
+/* -------------------------------------------------------------
+   .statut — page mes-trajets
+   ------------------------------------------------------------- */
+.statut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--rayon-s);
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.statut::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--rayon-full);
+  background: currentColor;
+}
+
+.statut-effectue {
+  background: rgba(0, 135, 81, 0.12);
+  color: #006b3f;
+}
+
+.statut-attente {
+  background: rgba(255, 211, 26, 0.22);
+  color: #6b5400;
+}
+
+.statut-annule {
+  background: rgba(226, 41, 35, 0.12);
+  color: var(--rouge);
+}
+
+/* -------------------------------------------------------------
+   .carte-trajet — générée par main.js sur la page recherche
+   ------------------------------------------------------------- */
+.carte-trajet {
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-l);
+  padding: var(--espace-2);
+  box-shadow: var(--ombre);
+}
+
+.carte-trajet .trajet-titre {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.carte-trajet .trajet-caption {
+  font-family: var(--police-texte);
+  font-size: 13px;
+  color: var(--texte-muet);
+}
+
+.carte-trajet .trajet-prix {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  color: var(--vert-primaire);
+}
+
+/* -------------------------------------------------------------
+   Boutons
+   ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: var(--rayon-m);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primaire {
+  background: #006b3f;
+  color: var(--texte-inverse);
+}
+
+.btn-primaire:hover { background: #00532f; }
+
+.btn-secondaire {
+  background: transparent;
+  color: var(--texte);
+  border-color: var(--bordure);
+}
+
+.btn-secondaire:hover { background: var(--surface); }
+
+.btn-retour {
+  background: transparent;
+  color: var(--texte-muet);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.btn-retour:hover { color: var(--texte); }
+
+/* -------------------------------------------------------------
+   Champs de formulaire
+   ------------------------------------------------------------- */
+label {
+  display: block;
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--texte);
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  font-family: var(--police-texte);
+  font-size: 15px;
+  color: var(--texte);
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-m);
+  padding: 10px 12px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #006b3f;
+  box-shadow: 0 0 0 3px rgba(0, 107, 63, 0.15);
+}
+
+input::placeholder { color: var(--texte-muet); }
+
+.champ {
+  margin-bottom: var(--espace-2);
+}
+
+.champ-erreur input {
+  border-color: var(--erreur);
+}
+
+.champ-message-erreur {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--erreur);
+}
+
+
+/* -------------------------------------------------------------
+   En-tête / navigation
+   ------------------------------------------------------------- */
+
+.entete {
+  background: #ffffff;
+  border-bottom: 1px solid var(--bordure);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.entete-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--espace-2) var(--espace-3);
+  display: flex;
+  align-items: center;
+  gap: var(--espace-4);
+}
+
+.marque {
+  text-decoration: none;
+  flex-shrink: 0;
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--texte);
+}
+
+.marque em {
+  font-style: normal;
+  color: #006b3f;
+}
+
+.nav-principale {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.lien-nav {
+  text-decoration: none;
+  color: var(--texte-muet);
+  font-family: var(--police-texte);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--rayon-m);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.lien-nav:hover {
+  color: var(--texte);
+  background: var(--surface);
+}
+
+.lien-nav--actif {
+  color: #006b3f;
+  background: rgba(0, 107, 63, 0.1);
+}
+
+.nav-session {
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--texte);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* -------------------------------------------------------------
+   Layout général
+   ------------------------------------------------------------- */
+.conteneur {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--espace-4) var(--espace-3) 64px;
+}
+
+.entete-page {
+  margin-bottom: var(--espace-3);
+}
+
+.eyebrow {
+  font-family: var(--police-texte);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texte-muet);
+  margin: 0 0 4px;
+}
+
+.entete-page h1 {
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 30px;
+}
+
+/* -------------------------------------------------------------
+   Cartes indicateurs — grille responsive
+   ------------------------------------------------------------- */
+.grille-indicateurs {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--espace-2);
+  margin-bottom: var(--espace-3);
+}
+
+@media (min-width: 620px) {
+  .grille-indicateurs { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 720px) {
+  .grille-indicateurs { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .grille-indicateurs { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* -------------------------------------------------------------
+   Blocs génériques (podium, vedette, tableau)
+   ------------------------------------------------------------- */
+.bloc {
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-l);
+  padding: var(--espace-3);
+  box-shadow: var(--ombre);
+}
+
+.bloc h2 {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: var(--espace-2);
+}
+
+.grille-secondaire {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-2);
+  margin-bottom: var(--espace-2);
+}
+
+@media (min-width: 720px) {
+  .grille-secondaire { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+/* -------------------------------------------------------------
+   Top 3 conducteurs — podium
+   ------------------------------------------------------------- */
+
+.podium {
+  list-style: none;
+  counter-reset: rang;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-1);
+}
+
+.podium li {
+  counter-increment: rang;
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  padding: 10px 12px;
+  border-radius: var(--rayon-m);
+  background: var(--surface);
+  font-family: var(--police-texte);
+  font-size: 14px;
+  color: var(--texte);
+}
+
+.podium li::before {
+  content: counter(rang);
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rayon-full);
+  color: var(--texte-inverse);
+  background: var(--texte-muet);
+}
+
+.podium li:nth-child(1)::before { 
+    background: #006b3f; 
+}
+
+.podium li:nth-child(2)::before { 
+    background: var(--or); color: #4d3b00; 
+    }
+.podium li:nth-child(3)::before {
+     background: #b0a98f; 
+    }
+
+/* -------------------------------------------------------------
+   Trajet vedette
+   ------------------------------------------------------------- */
+
+.bloc--vedette {
+  border-left: 4px solid #006b3f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow--vedette {
+  color: #006b3f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+}
+
+.texte-vedette {
+  margin: 0;
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--texte);
+}
+
+/* -------------------------------------------------------------
+   Tableau quartiers
+   ------------------------------------------------------------- */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-quartiers {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  font-family: var(--police-texte);
+  font-size: 14px;
+}
+
+.table-quartiers thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texte-muet);
+  padding: 0 var(--espace-1) 10px;
+  border-bottom: 2px solid var(--texte);
+}
+
+.table-quartiers thead th:not(:first-child),
+.table-quartiers tbody td:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-quartiers tbody td {
+  padding: 12px var(--espace-1);
+  border-bottom: 1px solid var(--bordure);
+}
+
+.table-quartiers tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+.table-quartiers tbody tr:hover {
+  background: rgba(0, 107, 63, 0.06);
+}
+
+/* -------------------------------------------------------------
+   Erreur globale
+   ------------------------------------------------------------- */
+.erreur-globale {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--erreur);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--rayon-m);
+  box-shadow: var(--ombre);
+  font-family: var(--police-texte);
+  font-size: 14px;
+  max-width: 90%;
+}
+
+/* -------------------------------------------------------------
+   Responsive nav
+   ------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .entete-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .nav-principale {
+    order: 3;
+    width: 100%;
+    gap: 2px;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
