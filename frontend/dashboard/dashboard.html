@@ -39,6 +39,7 @@
 
         <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
         <div id="nav-session"></div>
+        <button type="button" id="btn-deconnexion-dash" class="btn-deconnexion">Déconnexion</button>
       </nav>
 
       <!-- Overlay frère de #nav-toggle : .nav-toggle:checked ~ .nav-overlay l'affiche ;
@@ -155,5 +156,11 @@
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>
+  <script>
+    document.getElementById("btn-deconnexion-dash")?.addEventListener("click", () => {
+      localStorage.removeItem("bracovoit_session");
+      window.location.href = "../accueil/index.html";
+    });
+  </script>
 </body>
 </html>

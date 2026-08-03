@@ -27,6 +27,39 @@ body#page-dashboard {
   line-height: 1.5;
 }
 
+/* Dashboard : masquer Connexion / Inscription injectés par main.js */
+#page-dashboard #nav-session {
+  display: none !important;
+}
+
+.btn-deconnexion {
+  flex-shrink: 0;
+  font-family: var(--corps);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #fff;
+  background: #c62828;
+  border: 1.5px solid #c62828;
+  border-radius: 10px;
+  min-height: 38px;
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-deconnexion:hover {
+  background: #a51f1f;
+  border-color: #a51f1f;
+}
+
+@media (max-width: 768px) {
+  .btn-deconnexion {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 12px;
+  }
+}
+
 main {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
