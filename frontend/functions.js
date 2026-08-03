@@ -183,7 +183,12 @@ function formaterPrix(prix) {
      * @return {string} - "5 000 FCFA"
      * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
      */
-    // TODO
+    if (typeof prix !== "number" || !isFinite(prix)) {
+        return "";
+    }
+    var montant = Math.round(prix);
+    var montantString = montant.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return montantString + " FCFA";
 }
 
 function formaterHeure(heure) {
@@ -192,7 +197,14 @@ function formaterHeure(heure) {
      * @param {string} heure - format "HH:MM" (ex: "07:30")
      * @return {string} - "07h30"
      */
-    // TODO
+    if (typeof heure !== "string") {
+        return "";
+    }
+    var heureNettoyee = heure.trim();
+    if (heureNettoyee === "") {
+        return "";
+    }
+    return heureNettoyee.replace(":", "h");
 }
 
 // ============================================================================
@@ -238,13 +250,21 @@ function validerFormulaireProposer(formulaire) {
     }
     if(places === undefined || places === null || places == "") {
         erreurs.push("Veuillez indiquer le nombre de places disponibles.");
-    }else{
+    } else {
         var placesNum = Number(places);
         if(!Number.isInteger(placesNum) || placesNum < 1 || placesNum > 8) {
             erreurs.push("Le nombre de places disponibles doit être compris entre 1 et 8.");
         }
     }
-    return{valide: erreurs.length === 0, erreurs: erreurs};
+    if(prix === undefined || prix === null || prix === "") {
+        erreurs.push("Le prix par place est obligatoire.");
+    } else {
+        var prixNum = Number(prix);
+        if(isNaN(prixNum) || prixNum <= 0) {
+            erreurs.push("Le prix par place doit être supérieur à 0.");
+        }
+    }
+    return {valide: erreurs.length === 0, erreurs: erreurs};
 
 }
 
@@ -313,7 +333,19 @@ function calculerPourcentageOccupation(placesOccupees, placesTotales) {
      * Exemple : 2 places sur 4 → 50
      * Si placesTotales est 0, retourne 0.
      */
-    // TODO
+    var occupees = Number(placesOccupees);
+    var totales = Number(placesTotales);
+    if (!isFinite(occupees) || !isFinite(totales) || totales <= 0) {
+        return 0;
+    }
+    var taux = Math.round((occupees / totales) * 100);
+    if (taux < 0) {
+        return 0;
+    }
+    if (taux > 100) {
+        return 100;
+    }
+    return taux;
 }
 
 function getBadgeDisponibilite(placesRestantes) {
@@ -327,7 +359,14 @@ function getBadgeDisponibilite(placesRestantes) {
      * - 1 place  → {libelle: "1 place", classe: "badge-limite"}
      * - 2+ places → {libelle: "N places", classe: "badge-dispo"}  (N = placesRestantes)
      */
-    // TODO
+    var places = Number(placesRestantes);
+    if (!isFinite(places) || places <= 0) {
+        return {libelle: "Complet", classe: "badge-complet"};
+    }
+    if (places === 1) {
+        return {libelle: "1 place", classe: "badge-limite"};
+    }
+    return {libelle: places + " places", classe: "badge-dispo"};
 }
 
 // ============================================================================
