@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Connexion</title>
+  <title> AfriMove — Connexion</title>
   <link rel="stylesheet" href="login.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body id="page-login">
 
@@ -22,23 +27,75 @@
 
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <form id="form-login">
-      <label for="l-telephone">Téléphone</label>
-      <input type="tel" id="l-telephone" placeholder="066123456">
+    <section class="login-container" aria-labelledby="titre-login">
+      <header class="login-header">
+        <div class="logo">
 
-      <label for="l-mot-de-passe">Mot de passe</label>
-      <input type="password" id="l-mot-de-passe">
+          <span class="logo-icon">
+            <i class="fa-solid fa-car"></i>
+          </span>
 
-      <button type="submit">Se connecter</button>
-    </form>
+          <h1>AfriMove</h1>
+
+        </div>
+        <h2 id="titre-login">
+          Bon retour parmi nous
+        </h2>
+        <p>
+          Connectez-vous pour retrouver vos trajets
+          et vos réservations.
+        </p>
+      </header>
+      
+      <form 
+        id="form-login"
+        class="login-form">
+        <div class="form-group">
+          <label for="l-telephone">Téléphone</label>
+        <input 
+          type="tel" 
+          id="l-telephone" 
+          placeholder="066123456"
+          autocomplete="tel"
+          name="telephone">
+        </div>
+      
+        <div class="form-group">
+          <label for="l-mot-de-passe">Mot de passe</label>
+          <input 
+          type="password" 
+          id="l-mot-de-passe"
+          autocomplete="current-password"
+          name="mot_de_passe">
+        </div>
+      
+
+        <button type="submit" class="login-btn">Se connecter</button>
+      </form>
+
 
     <!-- Zone d'erreurs de validation — TODO (Dev FS7) : mettre en forme la
          liste <ul><li> injectée par main.js en cas de formulaire invalide.
          NE PAS MODIFIER l'id. -->
-    <div id="erreurs-form" hidden></div>
+      <div id="erreurs-form" hidden class="erreurs"></div>
 
     <!-- LIEN VERS INSCRIPTION — TODO (Dev FS7) : lien "Pas encore de compte ?
          S'inscrire" pointant vers ../inscription/inscription.html -->
+      <footer class="login-footer">
+        <p>
+          Pas encore de compte ?
+
+            <a href="../inscription/inscription.html">
+            
+              Créer un compte
+
+            </a>
+
+        </p>
+
+
+      </footer>
+    </section>
   </main>
 
   <div id="erreur-globale" hidden></div>

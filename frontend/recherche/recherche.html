@@ -3,17 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Recherche</title>
+  <title>AfriMove — Recherche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="recherche.css">
 </head>
 <body id="page-recherche">
 
-  <!-- NAVIGATION — TODO (Dev FS2) -->
+  <!-- NAVIGATION — menu burger en CSS pur (checkbox hack) : aucun script, aucun DOM.
+       #nav-toggle est une checkbox cachée ; le <label for="nav-toggle"> ouvre/ferme ;
+       .nav-toggle:checked ~ .nav-principale affiche le menu. Visible ≤ 768px seulement. -->
+  <header class="site-header">
+    <div class="nav-barre">
+      <a class="nav-marque" href="../accueil/index.html">AfriMove</a>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+      <!-- PAS d'attribut "hidden" : il casse le sélecteur ":checked ~" sur certains moteurs.
+           Le masquage se fait uniquement en CSS (.nav-toggle). -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <label for="nav-toggle" class="nav-burger" aria-label="Ouvrir le menu">
+        <span class="nav-burger-lignes" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </label>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <ul class="nav-liens" id="nav-liens">
+          <li><a href="../accueil/index.html">Accueil</a></li>
+          <li><a href="recherche.html" aria-current="page">Recherche</a></li>
+          <li><a href="../proposer/proposer.html">Proposer un trajet</a></li>
+          <li><a href="../mes-trajets/mes-trajets.html">Mes trajets</a></li>
+        </ul>
+
+        <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+        <div id="nav-session"></div>
+      </nav>
+
+      <!-- Overlay frère de #nav-toggle : .nav-toggle:checked ~ .nav-overlay l'affiche ;
+           le label referme le menu au clic (décoche la checkbox). -->
+      <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
+    </div>
+  </header>
 
   <main>
+    <header class="page-intro">
+      <h1>Trouver un trajet</h1>
+      <p>Filtrez par quartier de départ ou cherchez un mot-clé parmi les trajets disponibles.</p>
+    </header>
+
     <!-- =====================================================================
          FILTRES — TODO (Dev FS2)
          Mettre en forme la barre de filtres : sélecteur de quartier de
@@ -22,10 +62,26 @@
 
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <section class="barre-filtres">
-      <select id="filtre-depart"></select>
-      <input type="text" id="champ-recherche" placeholder="Rechercher un quartier, un mot-clé...">
-      <button id="btn-rechercher">Rechercher</button>
+    <section class="barre-filtres" aria-label="Filtres de recherche">
+      <div class="filtre-champ">
+        <label class="filtre-label" id="label-filtre-depart" for="filtre-depart">Départ</label>
+        <div class="select-custom">
+          <select id="filtre-depart" class="select-filtre" aria-labelledby="label-filtre-depart"></select>
+        </div>
+      </div>
+
+      <label class="filtre-champ filtre-recherche" for="champ-recherche">
+        <span class="filtre-label">Mot-clé</span>
+        <span class="champ-recherche-wrap">
+          <svg class="icone-loupe" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="champ-recherche" placeholder="Rechercher un quartier, un mot-clé...">
+        </span>
+      </label>
+
+      <button type="button" id="btn-rechercher">Rechercher</button>
     </section>
 
     <!-- =====================================================================
@@ -41,7 +97,7 @@
 
          *** NE PAS MODIFIER l'id ci-dessous ***
          ===================================================================== -->
-    <section id="liste-trajets"></section>
+    <section id="liste-trajets" aria-live="polite" aria-label="Résultats de recherche"></section>
   </main>
 
   <div id="erreur-globale" hidden></div>

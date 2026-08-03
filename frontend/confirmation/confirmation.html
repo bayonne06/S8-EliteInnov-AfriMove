@@ -3,17 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraCovoit — Confirmation</title>
+  <title>AfriMove — Confirmation</title>
   <link rel="stylesheet" href="confirmation.css">
 </head>
 <body id="page-confirmation">
 
   <!-- NAVIGATION — TODO (Dev FS6) -->
 
+  <header class="entete">
+    <div class="entete-inner">
+      <a class="marque" href="#page-dashboard">Afri<em>Mouv</em></a>
+
+      <nav class="nav-principale" aria-label="Navigation principale">
+        <a href="#" class="lien-nav lien-nav--actif" aria-current="page">Tableau de bord</a>
+        <a href="#" class="lien-nav">Trajets</a>
+        <a href="#" class="lien-nav">Réservations</a>
+        <a href="#" class="lien-nav">Profil</a>
+      </nav>
+
   <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+   
   <div id="nav-session"></div>
 
+     <div id="nav-session" class="nav-session"></div>
+    </div>
+  </header>
+
   <main>
+
     <!-- =====================================================================
          MESSAGE DE CONFIRMATION — TODO (Dev FS6)
          Cadre visuel de succès (icône, couleur positive). Le message exact
@@ -21,7 +38,8 @@
 
          *** NE PAS MODIFIER l'id — main.js injecte le message ***
          ===================================================================== -->
-         
+    
+      
     <section class="bloc-confirmation">
       <h1>Merci !</h1>
       <p id="confirmation-message"></p>
@@ -30,6 +48,7 @@
     <!-- PROCHAINES ÉTAPES — TODO (Dev FS6) : mettre en forme ces 3 liens
          (boutons ou cartes de navigation).
          NE PAS MODIFIER les href/id des liens. -->
+
     <section class="prochaines-etapes">
       <h2>Prochaines étapes</h2>
       <a href="../accueil/index.html">Retour à l'accueil</a>

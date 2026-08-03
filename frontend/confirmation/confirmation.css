@@ -1,26 +1,27 @@
-/* =========================================================================
-   BraCovoit — Confirmation
-   Respecte la charte graphique officielle (mêmes tokens que le tableau
-   de bord). Structure HTML non modifiée : seules les classes existantes
-   et les balises génériques sont stylées.
-   ========================================================================= */
+/* =============================================================
+   BraCovoit / AfriMouv — confirmation.css
+   Page de confirmation (Dev FS6)
+   Charte : maquettes Stitch — voir variables ci-dessous
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   /* Couleurs de marque */
-  --couleur-primaire: #006b3f;
-  --couleur-conteneur: #008751;
-  --couleur-or: #ffd31a;
-  --couleur-rouge: #e22923;
-  --couleur-erreur: #ba1a1a;
+  --vert-primaire: #006b3f;
+  --vert-primaire-hover: #00552f;
+  --vert-conteneur: #008751;
+  --or: #ffd31a;
+  --rouge: #e22923;
+  --erreur: #ba1a1a;
 
-  /* Neutres */
-  --couleur-fond: #f9f9fc;
-  --couleur-surface: #eeeef0;
-  --couleur-texte: #1a1c1e;
-  --couleur-texte-att: #5a5d61;
-  --couleur-bordure: #dcdce0;
+  --fond: #f9f9fc;
+  --surface: #eeeef0;
+  --texte: #1a1c1e;
+  --texte-doux: #55585c;
+  --bordure: #dcdce0;
 
-  /* Typographie */
+  /* Typo */
   --police-titres: "Montserrat", sans-serif;
   --police-texte: "Inter", sans-serif;
 
@@ -29,7 +30,8 @@
   --esp-2: 16px;
   --esp-3: 24px;
   --esp-4: 32px;
-  --esp-5: 40px;
+  --esp-6: 48px;
+  --esp-8: 64px;
 
   /* Rayons */
   --rayon-sm: 4px;
@@ -42,159 +44,226 @@
   box-sizing: border-box;
 }
 
-body {
+body#page-confirmation {
   margin: 0;
-  background-color: var(--couleur-fond);
-  color: var(--couleur-texte);
+  background: var(--fond);
+  color: var(--texte);
   font-family: var(--police-texte);
-  font-size: 16px;
   line-height: 1.5;
-  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2 {
+a {
+  color: inherit;
+}
+
+/* -----------------------------------------------------------
+   En-tête
+   ----------------------------------------------------------- */
+
+.entete {
+  background: #ffffff;
+  border-bottom: 1px solid var(--bordure);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.entete-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--esp-2) var(--esp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+}
+
+.marque {
   font-family: var(--police-titres);
-  margin: 0;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--texte);
+  text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
-#nav-session {
-  min-height: 32px;
+.marque em {
+  font-style: normal;
+  color: var(--vert-primaire);
 }
+
+.nav-principale {
+  display: flex;
+  gap: var(--esp-3);
+  margin-right: auto;
+}
+
+.lien-nav {
+  font-family: var(--police-texte);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--texte-doux);
+  text-decoration: none;
+  padding: var(--esp-1) 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.lien-nav:hover {
+  color: var(--texte);
+}
+
+.lien-nav--actif {
+  color: var(--vert-primaire);
+  border-bottom-color: var(--vert-primaire);
+  font-weight: 600;
+}
+
+.nav-session {
+  min-height: 1px; /* réservé à main.js */
+}
+
+/* -----------------------------------------------------------
+   Contenu principal
+   ----------------------------------------------------------- */
 
 main {
   max-width: 640px;
   margin: 0 auto;
-  padding: var(--esp-4) var(--esp-3) var(--esp-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-4);
+  padding: var(--esp-8) var(--esp-3) var(--esp-8);
 }
 
-/* ---------------------------------------------------------------------
-   Bloc de confirmation
-   --------------------------------------------------------------------- */
+/* Bloc de confirmation */
 
 .bloc-confirmation {
-  background-color: #ffffff;
-  border: 1px solid var(--couleur-bordure);
-  border-top: 4px solid var(--couleur-conteneur);
+  background: #ffffff;
+  border: 1px solid var(--bordure);
   border-radius: var(--rayon-lg);
-  padding: var(--esp-4) var(--esp-3);
+  padding: var(--esp-6) var(--esp-4);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--esp-2);
+  box-shadow: 0 1px 2px rgba(26, 28, 30, 0.04);
 }
 
-/* Icône de succès, générée en CSS pur (pas d'image à charger) */
 .bloc-confirmation::before {
-  content: "\2713";
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  content: "";
+  display: block;
   width: 56px;
   height: 56px;
+  margin: 0 auto var(--esp-3);
   border-radius: var(--rayon-full);
-  background-color: var(--couleur-conteneur);
-  color: #ffffff;
-  font-size: 1.6rem;
-  font-weight: 700;
+  background: var(--vert-conteneur);
+  background-image:
+    linear-gradient(45deg, transparent 42%, #ffffff 42%, #ffffff 48%, transparent 48%),
+    linear-gradient(-45deg, transparent 52%, #ffffff 52%, #ffffff 58%, transparent 58%);
+  background-repeat: no-repeat;
 }
 
 .bloc-confirmation h1 {
-  font-size: 1.6rem;
-  color: var(--couleur-texte);
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin: 0 0 var(--esp-2);
+  color: var(--texte);
 }
 
-.bloc-confirmation p {
-  margin: 0;
-  color: var(--couleur-texte-att);
+.bloc-confirmation p#confirmation-message {
   font-size: 1rem;
-  max-width: 44ch;
+  color: var(--texte-doux);
+  margin: 0;
 }
 
-/* ---------------------------------------------------------------------
-   Prochaines étapes
-   --------------------------------------------------------------------- */
+/* Prochaines étapes */
 
 .prochaines-etapes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-2);
+  margin-top: var(--esp-4);
 }
 
 .prochaines-etapes h2 {
-  font-size: 1.1rem;
+  font-family: var(--police-titres);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texte-doux);
   text-align: center;
-  color: var(--couleur-texte-att);
+  margin: 0 0 var(--esp-3);
 }
 
 .prochaines-etapes a {
   display: block;
   text-decoration: none;
+  text-align: center;
   font-family: var(--police-texte);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   padding: var(--esp-2) var(--esp-3);
   border-radius: var(--rayon-md);
-  text-align: center;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  margin-bottom: var(--esp-2);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-/* Lien principal : "Voir mes trajets" mis en avant */
+.prochaines-etapes a:last-child {
+  margin-bottom: 0;
+}
+
+/* Action principale : "Voir mes trajets" */
 .prochaines-etapes a#lien-mes-trajets {
-  background-color: var(--couleur-primaire);
+  background: var(--vert-primaire);
   color: #ffffff;
 }
 
 .prochaines-etapes a#lien-mes-trajets:hover {
-  background-color: var(--couleur-conteneur);
+  background: var(--vert-primaire-hover);
 }
 
-/* Liens secondaires */
+/* Actions secondaires */
 .prochaines-etapes a:not(#lien-mes-trajets) {
-  background-color: #ffffff;
-  border: 1px solid var(--couleur-bordure);
-  color: var(--couleur-texte);
+  background: var(--surface);
+  color: var(--texte);
+  border: 1px solid var(--bordure);
 }
 
 .prochaines-etapes a:not(#lien-mes-trajets):hover {
-  background-color: var(--couleur-surface);
+  background: #ffffff;
+  border-color: var(--vert-primaire);
+  color: var(--vert-primaire);
 }
 
-.prochaines-etapes a:active {
-  transform: scale(0.98);
+/* Accessibilité : focus clavier visible */
+.lien-nav:focus-visible,
+.prochaines-etapes a:focus-visible {
+  outline: 2px solid var(--vert-primaire);
+  outline-offset: 2px;
 }
 
-/* ---------------------------------------------------------------------
+/* -----------------------------------------------------------
    Responsive
-   --------------------------------------------------------------------- */
+   ----------------------------------------------------------- */
 
-/* Tablette / desktop : les 3 liens passent en ligne */
-@media (min-width: 600px) {
-  main {
-    padding-top: var(--esp-5);
-  }
-
-  .prochaines-etapes {
-    flex-direction: row;
+@media (max-width: 600px) {
+  .entete-inner {
     flex-wrap: wrap;
+    gap: var(--esp-2);
   }
 
-  .prochaines-etapes h2 {
+  .nav-principale {
+    order: 3;
     width: 100%;
-    text-align: left;
+    gap: var(--esp-2);
+    overflow-x: auto;
   }
 
-  .prochaines-etapes a {
-    flex: 1 1 0;
-    min-width: 160px;
+  main {
+    padding: var(--esp-4) var(--esp-2) var(--esp-6);
+  }
+
+  .bloc-confirmation {
+    padding: var(--esp-4) var(--esp-3);
   }
 }
 
-@media (min-width: 780px) {
-  .bloc-confirmation h1 {
-    font-size: 1.9rem;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
