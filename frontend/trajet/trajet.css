@@ -1,0 +1,498 @@
+@import url(../base.css);
+
+/* =====================================================================
+   trajet.css — BraCovoit / AfriMove
+   Page : Détail du trajet (Dev FS4)
+   ===================================================================== */
+
+:root {
+    --accent: #0e8f84;
+    --accent-fonce: #0a6f67;
+    --accent-doux: #e8f6f4;
+    --texte: #172524;
+    --texte-doux: #5b6e6b;
+    --fond: #f1f6f5;
+    --surface: #ffffff;
+    --bordure: #d4e3e0;
+    --ombre: 0 10px 28px rgba(14, 45, 42, 0.07);
+    --ombre-forte: 0 16px 36px rgba(14, 45, 42, 0.14);
+    --pill: 999px;
+    --rayon: 16px;
+    --titre: "Outfit", sans-serif;
+    --corps: "DM Sans", sans-serif;
+    --header-h: 64px;
+
+    /* Espacements cohérents */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--corps);
+    color: var(--texte);
+    background:
+        radial-gradient(ellipse 65% 40% at 0% 0%, rgba(14, 143, 132, 0.08), transparent 55%),
+        linear-gradient(180deg, #eef5f4 0%, var(--fond) 50%, #e8f0ef 100%);
+    line-height: 1.5;
+}
+
+#page-trajet {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ============================================================
+   CONTENU PRINCIPAL
+   ============================================================ */
+#page-trajet main {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-areas:
+        "entete   entete"
+        "fiche    reservation";
+    gap: var(--space-lg);
+    align-items: start;
+    align-content: start;
+}
+
+/* ---------- entête du trajet ---------- */
+.entete-trajet {
+    grid-area: entete;
+    background: var(--surface);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: var(--space-lg);
+    box-shadow: var(--ombre);
+    animation: monte 0.45s ease both;
+}
+
+.entete-trajet #trajet-titre {
+    font-family: var(--titre);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-md);
+    color: var(--texte);
+}
+
+.entete-trajet p {
+    margin: var(--space-sm) 0;
+    font-size: 0.95rem;
+    color: var(--texte-doux);
+}
+
+.entete-trajet p span {
+    color: var(--texte);
+    font-weight: 600;
+}
+
+.entete-trajet #trajet-prix {
+    font-family: var(--titre);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+/* Badge de disponibilité */
+.badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: var(--space-md);
+}
+
+.badge-dispo {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-limite {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-complet {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ---------- fiche conducteur ---------- */
+.fiche-conducteur {
+    grid-area: fiche;
+    background: var(--surface);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: var(--space-lg);
+    box-shadow: var(--ombre);
+    animation: monte 0.45s ease 0.05s both;
+}
+
+.fiche-conducteur h2 {
+    font-family: var(--titre);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 var(--space-md);
+    color: var(--texte);
+}
+
+.fiche-conducteur p {
+    margin: var(--space-sm) 0;
+    padding: var(--space-sm) 0;
+    font-size: 0.92rem;
+    color: var(--texte-doux);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--bordure);
+}
+
+.fiche-conducteur p:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.fiche-conducteur p span {
+    color: var(--texte);
+    font-weight: 600;
+}
+
+/* ---------- formulaire de réservation ---------- */
+#form-reservation {
+    grid-area: reservation;
+    background: var(--accent);
+    border-radius: var(--rayon);
+    padding: var(--space-lg);
+    max-width: none;
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-lg));
+    box-shadow: var(--ombre-forte);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    animation: monte 0.45s ease 0.1s both;
+}
+
+#form-reservation label {
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-xs);
+}
+
+#form-reservation input {
+    width: 100%;
+    padding: 0 var(--space-md);
+    height: 48px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--texte);
+    font-family: var(--corps);
+    font-size: 0.95rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#form-reservation input:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+#btn-reserver {
+    width: 100%;
+    margin-top: var(--space-sm);
+    padding: 13px var(--space-lg);
+    font-weight: 700;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+    font-family: var(--corps);
+}
+
+#btn-reserver:hover {
+    background: var(--accent-doux);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+}
+
+#btn-reserver:active {
+    transform: scale(0.97);
+}
+
+#btn-reserver:disabled {
+    background: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.8);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ---------- zones d'erreurs ---------- */
+#page-trajet #erreurs-form {
+    grid-area: reservation;
+    margin-top: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 14px;
+    animation: monte 0.3s ease both;
+}
+
+#page-trajet #erreurs-form[hidden] {
+    display: none !important;
+}
+
+#page-trajet #erreurs-form ul {
+    margin: 0;
+    padding-left: var(--space-lg);
+    color: #b91c1c;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+#page-trajet #erreurs-form ul li {
+    margin-bottom: var(--space-xs);
+}
+
+#page-trajet #erreur-globale {
+    position: fixed;
+    right: var(--space-md);
+    bottom: var(--space-md);
+    left: var(--space-md);
+    max-width: 400px;
+    margin-left: auto;
+    padding: var(--space-md) var(--space-lg);
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    box-shadow: var(--ombre);
+    font-weight: 500;
+    z-index: 300;
+}
+
+#page-trajet #erreur-globale[hidden] {
+    display: none !important;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes monte {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* === ≤ 1080px === */
+@media (max-width: 1080px) {
+    #page-trajet main {
+        max-width: 100%;
+        grid-template-columns: 1fr 340px;
+        padding: var(--space-lg) var(--space-md);
+        gap: var(--space-md);
+    }
+}
+
+/* === ≤ 768px === */
+@media (max-width: 768px) {
+    #page-trajet main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "entete"
+            "fiche"
+            "reservation";
+        padding: var(--space-md);
+        gap: var(--space-md);
+    }
+
+    #form-reservation {
+        position: static;
+        padding: var(--space-md);
+        gap: var(--space-sm);
+    }
+
+    #form-reservation input {
+        height: 44px;
+        padding: 0 var(--space-md);
+    }
+
+    #btn-reserver {
+        padding: 11px var(--space-md);
+    }
+
+    .entete-trajet #trajet-titre {
+        font-size: 1.35rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .entete-trajet {
+        padding: var(--space-md);
+    }
+
+    .entete-trajet p {
+        font-size: 0.9rem;
+        margin: var(--space-xs) 0;
+    }
+
+    .fiche-conducteur {
+        padding: var(--space-md);
+    }
+
+    .fiche-conducteur p {
+        font-size: 0.88rem;
+        padding: var(--space-xs) 0;
+        margin: var(--space-xs) 0;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: var(--space-xs) var(--space-sm);
+        margin-top: var(--space-sm);
+    }
+
+    #page-trajet #erreurs-form {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    #page-trajet #erreurs-form ul {
+        font-size: 0.85rem;
+        padding-left: var(--space-md);
+    }
+}
+
+/* === ≤ 375px === */
+@media (max-width: 375px) {
+    #page-trajet main {
+        padding: var(--space-sm) 12px;
+        gap: var(--space-sm);
+    }
+
+    .entete-trajet,
+    .fiche-conducteur,
+    #form-reservation {
+        padding: var(--space-md);
+        border-radius: 14px;
+    }
+
+    .entete-trajet #trajet-titre {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-xs);
+    }
+
+    .entete-trajet p {
+        font-size: 0.82rem;
+        margin: var(--space-xs) 0;
+    }
+
+    .entete-trajet #trajet-prix {
+        font-size: 1rem;
+    }
+
+    .fiche-conducteur h2 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .fiche-conducteur p {
+        font-size: 0.82rem;
+        flex-direction: column;
+        gap: var(--space-xs);
+        padding: var(--space-xs) 0;
+        margin: var(--space-xs) 0;
+    }
+
+    #form-reservation {
+        gap: var(--space-xs);
+        padding: var(--space-md);
+    }
+
+    #form-reservation label {
+        font-size: 0.7rem;
+        margin-bottom: 0;
+    }
+
+    #form-reservation input {
+        height: 40px;
+        font-size: 0.88rem;
+        padding: 0 var(--space-sm);
+        border-radius: 10px;
+    }
+
+    #btn-reserver {
+        height: 44px;
+        font-size: 0.88rem;
+        padding: 0 var(--space-md);
+        border-radius: 10px;
+        margin-top: 0;
+    }
+
+    .badge {
+        font-size: 0.6rem;
+        padding: 2px var(--space-sm);
+        margin-top: var(--space-xs);
+    }
+
+    #page-trajet #erreurs-form {
+        padding: var(--space-sm);
+        border-radius: 12px;
+        margin-top: var(--space-xs);
+    }
+
+    #page-trajet #erreurs-form ul {
+        font-size: 0.8rem;
+        padding-left: var(--space-sm);
+    }
+
+    #page-trajet #erreur-globale {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.88rem;
+        right: var(--space-sm);
+        bottom: var(--space-sm);
+        left: var(--space-sm);
+    }
+}
