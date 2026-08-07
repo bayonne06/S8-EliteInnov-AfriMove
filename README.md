@@ -1,5 +1,5 @@
 # AfriMove — Covoiturage inter-quartiers, Brazzaville
- 
+
 Bienvenue dans votre startup. Ce dépôt est le **squelette** de l'application : un mini-site de 9 pages pour organiser le covoiturage entre habitants des quartiers de Brazzaville. La structure est déjà en place ; **votre équipe complète les fonctions manquantes et construit les pages**.
 
 # Parcours et tâches effectuées par membres 
@@ -19,7 +19,39 @@ Bienvenue dans votre startup. Ce dépôt est le **squelette** de l'application :
 Vous avez **quelques jours** pour ce projet.
 
 
-**DATA ANALYSTES**
+**PM (Product Manager)**
+---------------------
+|Nom et prénoms|Tâches effectuées|Statut|
+|:--------------|-----------------|------|
+|Jerome NDZOULOU|Guide d'entretien|Terminé|
+|Jerome NDZOULOU|Réalisation des entretiens|Terminé|
+|Divin Josué BAKALA|Synthèse discovery|Terminé|
+|Jerome NDZOULOU|Priorisation - Matrice impact/effort|Terminé|
+|Divin Josué BAKALA|Benchmarck|Terminé|
+|Jerome NDZOULOU|Présentation discovery|Terminé|
+|Divin Josué BAKALA|Fiche personna|Terminé|
+
+
+**DIGITAL MARKETING**
+---------------------
+|Nom et prénoms|Tâches effectuées|Statut|
+|:--------------|-----------------|------|
+|Divin Josué BAKALA|Proposition de valeur|Terminé|
+|-|Landing page|Non démarré|
+|-|Copywriting & SEO|Non démarré|
+
+
+**BUSINESS ANALYST**
+---------------------
+|Nom et prénoms|Tâches effectuées|Statut|
+|:--------------|-----------------|------|
+|Joamie Stévia GAPALA|Backlog user story|Terminé|
+|Joamie Stévia GAPALA|Cahier des charges|Terminé|
+|Joamie Stévia GAPALA|Exigences fonctionnelles FRD|Terminé|
+|Joamie Stévia GAPALA|BPMN|Terminé|
+
+
+**DATA SCIENTISTS**
 ---------------------
 
 **Zone A**
