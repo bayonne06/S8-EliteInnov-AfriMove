@@ -10,7 +10,7 @@
 
 const API = ["localhost", "127.0.0.1"].includes(location.hostname)
   ? "http://localhost:5000/api"
-  : "https://TON_USER.pythonanywhere.com/api";
+  : "https://bayonne06.pythonanywhere.com/";
 
 async function api(path, options = {}) {
     const r = await fetch(`${API}${path}`, options);
