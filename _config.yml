@@ -1,2 +1,3 @@
 plugins:
   - jekyll-redirect-from
+baseurl: "/S8-EliteInnov-AfriMove"
